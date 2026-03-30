@@ -1723,13 +1723,17 @@
                         </div>
                         @endif
                         @if($reservation->additional_options && count($reservation->additional_options) > 0)
-                            @foreach($reservation->additional_options as $option)
+                            @foreach($reservation->additional_options as $optKey => $option)
+                                @php
+                                    $optName = is_array($option) ? ($option['name'] ?? 'Option') : (is_string($optKey) ? $optKey : 'Option');
+                                    $optPrice = is_array($option) ? (float) ($option['price'] ?? 0) : (is_numeric($option) ? (float) $option : 0);
+                                @endphp
                             <div style="padding: 20px; background: rgba(16, 185, 129, 0.15); backdrop-filter: blur(10px); border-radius: 16px; border: 1px solid rgba(16, 185, 129, 0.3);">
-                                <div style="font-size: 12px; color: rgba(255, 255, 255, 0.7); margin-bottom: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">{{ $option['name'] }}</div>
+                                <div style="font-size: 12px; color: rgba(255, 255, 255, 0.7); margin-bottom: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">{{ $optName }}</div>
                                 <div style="font-size: 18px; font-weight: 800; color: #34d399; text-shadow: 0 0 10px rgba(16, 185, 129, 0.5);">
                                     <i class="fas fa-check"></i> 
-                                    @if($option['price'] > 0)
-                                        +{{ number_format($option['price'], 0, ',', ' ') }} €
+                                    @if($optPrice > 0)
+                                        +{{ number_format($optPrice, 0, ',', ' ') }} €
                                     @else
                                         Inclus
                                     @endif
@@ -1794,11 +1798,7 @@
                         $options = 0;
                         if ($res->has_breakfast && $house->price_breakfast) $options += $house->price_breakfast;
                         if ($res->has_love_room && $house->price_love_room) $options += $house->price_love_room;
-                        if ($res->additional_options && is_array($res->additional_options)) {
-                            foreach ($res->additional_options as $opt) {
-                                if (isset($opt['price'])) $options += floatval($opt['price']);
-                            }
-                        }
+                        $options += \App\Support\AdditionalOptions::sumPrices(is_array($res->additional_options) ? $res->additional_options : null);
                         $houseRevenue += $base + $options;
                     }
                     $revenueByHouse[$house->description] = round($houseRevenue);
@@ -2229,11 +2229,7 @@
                             $options = 0;
                             if ($res->has_breakfast && $house->price_breakfast) $options += $house->price_breakfast;
                             if ($res->has_love_room && $house->price_love_room) $options += $house->price_love_room;
-                            if ($res->additional_options && is_array($res->additional_options)) {
-                                foreach ($res->additional_options as $opt) {
-                                    if (isset($opt['price'])) $options += floatval($opt['price']);
-                                }
-                            }
+                            $options += \App\Support\AdditionalOptions::sumPrices(is_array($res->additional_options) ? $res->additional_options : null);
                             return $base + $options;
                         });
                     $monthlyRevenue[] = round($monthRevenue);
