@@ -28,6 +28,19 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
+        // Compte locataire (loueur) pour tests — connexion /locataire/login
+        $loueurTest = User::query()->updateOrCreate(
+            ['email' => 'loueur@test.com'],
+            [
+                'first_name' => 'Jean',
+                'last_name' => 'Dupont',
+                'password' => 'password',
+                'role' => 'locataire',
+            ]
+        );
+
+        House::factory()->forLocataire($loueurTest)->create();
+
         // 2. 10 utilisateurs classiques (voyageurs)
         User::factory()
             ->count(10)

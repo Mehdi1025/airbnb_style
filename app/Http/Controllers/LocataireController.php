@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Support\AdditionalOptions;
 use App\Models\House;
 use App\Models\Reservation;
 use Carbon\Carbon;
@@ -79,16 +80,11 @@ class LocataireController extends Controller
             if ($reservation->has_love_room && $house->price_love_room) {
                 $optionsPrice += $house->price_love_room;
             }
-            
-            // Ajouter les options supplémentaires
-            if ($reservation->additional_options && is_array($reservation->additional_options)) {
-                foreach ($reservation->additional_options as $option) {
-                    if (isset($option['price'])) {
-                        $optionsPrice += floatval($option['price']);
-                    }
-                }
-            }
-            
+
+            $optionsPrice += AdditionalOptions::sumPrices(
+                is_array($reservation->additional_options) ? $reservation->additional_options : null
+            );
+
             $totalRevenue += $basePrice + $optionsPrice;
         }
         
@@ -116,15 +112,10 @@ class LocataireController extends Controller
                 $optionsPrice += $house->price_love_room;
             }
             
-            // Ajouter les options supplémentaires
-            if ($reservation->additional_options && is_array($reservation->additional_options)) {
-                foreach ($reservation->additional_options as $option) {
-                    if (isset($option['price'])) {
-                        $optionsPrice += floatval($option['price']);
-                    }
-                }
-            }
-            
+            $optionsPrice += AdditionalOptions::sumPrices(
+                is_array($reservation->additional_options) ? $reservation->additional_options : null
+            );
+
             $currentMonthRevenue += $basePrice + $optionsPrice;
         }
         
@@ -322,15 +313,10 @@ class LocataireController extends Controller
                 $optionsPrice += $house->price_love_room;
             }
             
-            // Ajouter les options supplémentaires
-            if ($reservation->additional_options && is_array($reservation->additional_options)) {
-                foreach ($reservation->additional_options as $option) {
-                    if (isset($option['price'])) {
-                        $optionsPrice += floatval($option['price']);
-                    }
-                }
-            }
-            
+            $optionsPrice += AdditionalOptions::sumPrices(
+                is_array($reservation->additional_options) ? $reservation->additional_options : null
+            );
+
             $totalRevenue += $basePrice + $optionsPrice;
         }
 
@@ -355,15 +341,10 @@ class LocataireController extends Controller
                 $optionsPrice += $house->price_love_room;
             }
             
-            // Ajouter les options supplémentaires
-            if ($reservation->additional_options && is_array($reservation->additional_options)) {
-                foreach ($reservation->additional_options as $option) {
-                    if (isset($option['price'])) {
-                        $optionsPrice += floatval($option['price']);
-                    }
-                }
-            }
-            
+            $optionsPrice += AdditionalOptions::sumPrices(
+                is_array($reservation->additional_options) ? $reservation->additional_options : null
+            );
+
             $currentMonthRevenue += $basePrice + $optionsPrice;
         }
 

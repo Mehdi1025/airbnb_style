@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reservation;
+use App\Support\AdditionalOptions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Stripe\Stripe;
@@ -66,16 +67,10 @@ class PaymentController extends Controller
             $breakfastAmount = $reservation->has_breakfast ? ($reservation->house->price_breakfast ?? 0) : 0;
             $loveRoomAmount = $reservation->has_love_room ? ($reservation->house->price_love_room ?? 0) : 0;
             
-            // Calculer le prix des options supplémentaires
-            $additionalOptionsAmount = 0;
-            if ($reservation->additional_options && is_array($reservation->additional_options)) {
-                foreach ($reservation->additional_options as $option) {
-                    if (isset($option['price'])) {
-                        $additionalOptionsAmount += floatval($option['price']);
-                    }
-                }
-            }
-            
+            $additionalOptionsAmount = AdditionalOptions::sumPrices(
+                is_array($reservation->additional_options) ? $reservation->additional_options : null
+            );
+
             $totalAmount = $baseAmount + $breakfastAmount + $loveRoomAmount + $additionalOptionsAmount;
 
             // Convertir en centimes (Stripe utilise les centimes)

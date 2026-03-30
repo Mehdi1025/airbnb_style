@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use App\Support\AdditionalOptions;
 use App\Models\DemandeLocation;
 use App\Models\House;
 use App\Models\Reservation;
@@ -102,15 +103,10 @@ class AdminController extends Controller
                 $breakfastPrice = $reservation->has_breakfast ? ($reservation->house->price_breakfast ?? 0) : 0;
                 $loveRoomPrice = $reservation->has_love_room ? ($reservation->house->price_love_room ?? 0) : 0;
                 
-                $additionalOptionsPrice = 0;
-                if ($reservation->additional_options && is_array($reservation->additional_options)) {
-                    foreach ($reservation->additional_options as $option) {
-                        if (isset($option['price'])) {
-                            $additionalOptionsPrice += floatval($option['price']);
-                        }
-                    }
-                }
-                
+                $additionalOptionsPrice = AdditionalOptions::sumPrices(
+                    is_array($reservation->additional_options) ? $reservation->additional_options : null
+                );
+
                 $reservationTotal = $basePrice + $breakfastPrice + $loveRoomPrice + $additionalOptionsPrice;
                 $totalRevenue += $reservationTotal;
                 
@@ -213,15 +209,10 @@ class AdminController extends Controller
                     $breakfastPrice = $reservation->has_breakfast ? ($reservation->house->price_breakfast ?? 0) : 0;
                     $loveRoomPrice = $reservation->has_love_room ? ($reservation->house->price_love_room ?? 0) : 0;
                     
-                    $additionalOptionsPrice = 0;
-                    if ($reservation->additional_options && is_array($reservation->additional_options)) {
-                        foreach ($reservation->additional_options as $option) {
-                            if (isset($option['price'])) {
-                                $additionalOptionsPrice += floatval($option['price']);
-                            }
-                        }
-                    }
-                    
+                    $additionalOptionsPrice = AdditionalOptions::sumPrices(
+                        is_array($reservation->additional_options) ? $reservation->additional_options : null
+                    );
+
                     $monthRevenue += $basePrice + $breakfastPrice + $loveRoomPrice + $additionalOptionsPrice;
                 }
             }
@@ -282,15 +273,10 @@ class AdminController extends Controller
                 $breakfastPrice = $reservation->has_breakfast ? ($reservation->house->price_breakfast ?? 0) : 0;
                 $loveRoomPrice = $reservation->has_love_room ? ($reservation->house->price_love_room ?? 0) : 0;
                 
-                $additionalOptionsPrice = 0;
-                if ($reservation->additional_options && is_array($reservation->additional_options)) {
-                    foreach ($reservation->additional_options as $option) {
-                        if (isset($option['price'])) {
-                            $additionalOptionsPrice += floatval($option['price']);
-                        }
-                    }
-                }
-                
+                $additionalOptionsPrice = AdditionalOptions::sumPrices(
+                    is_array($reservation->additional_options) ? $reservation->additional_options : null
+                );
+
                 $currentYearRevenue += $basePrice + $breakfastPrice + $loveRoomPrice + $additionalOptionsPrice;
             }
         }
@@ -327,15 +313,10 @@ class AdminController extends Controller
                 $breakfastPrice = $reservation->has_breakfast ? ($reservation->house->price_breakfast ?? 0) : 0;
                 $loveRoomPrice = $reservation->has_love_room ? ($reservation->house->price_love_room ?? 0) : 0;
                 
-                $additionalOptionsPrice = 0;
-                if ($reservation->additional_options && is_array($reservation->additional_options)) {
-                    foreach ($reservation->additional_options as $option) {
-                        if (isset($option['price'])) {
-                            $additionalOptionsPrice += floatval($option['price']);
-                        }
-                    }
-                }
-                
+                $additionalOptionsPrice = AdditionalOptions::sumPrices(
+                    is_array($reservation->additional_options) ? $reservation->additional_options : null
+                );
+
                 $previousMonthRevenue += $basePrice + $breakfastPrice + $loveRoomPrice + $additionalOptionsPrice;
             }
         }

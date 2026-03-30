@@ -30,8 +30,8 @@ class ReservationFactory extends Factory
             'has_breakfast' => $faker->boolean(35),
             'has_love_room' => $faker->boolean(20),
             'additional_options' => $faker->optional(0.4)->randomElement([
-                ['Navette aéroport' => 45],
-                ['Linge de lit premium' => 25],
+                [['name' => 'Navette aéroport', 'price' => 45]],
+                [['name' => 'Linge de lit premium', 'price' => 25]],
             ]),
             'stripe_session_id' => null,
             'payment_status' => $faker->randomElement(['pending', 'paid', 'failed', 'refunded']),
