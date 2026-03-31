@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion Locataire - Casa Del Concierge</title>
+    <link rel="icon" href="{{ asset('images/logo.jpeg') }}" type="image/jpeg">
+    <link rel="apple-touch-icon" href="{{ asset('images/logo.jpeg') }}">
     
     <!-- Airbnb-like Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -76,21 +78,29 @@
         .login-logo {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            color: var(--airbnb-pink);
-            font-size: 28px;
-            font-weight: 700;
+            justify-content: center;
             text-decoration: none;
             margin-bottom: 20px;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, opacity 0.3s ease;
         }
         
         .login-logo:hover {
-            transform: scale(1.05);
+            transform: scale(1.02);
+            opacity: 0.92;
         }
         
-        .login-logo i {
-            font-size: 32px;
+        .login-logo img {
+            height: 3rem;
+            width: auto;
+            max-height: 52px;
+            object-fit: contain;
+        }
+        
+        @media (max-width: 480px) {
+            .login-logo img {
+                height: 2.5rem;
+                max-height: 48px;
+            }
         }
         
         .login-title {
@@ -287,9 +297,8 @@
     <div class="login-container">
         <div class="login-card">
             <div class="login-header">
-                <a href="{{ url('/') }}" class="login-logo">
-                    <i class="fab fa-airbnb"></i>
-                    <span>CasaDelConcierge</span>
+                <a href="{{ url('/') }}" class="login-logo" title="Casa Del Concierge — Accueil">
+                    <img src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" width="200" height="56" loading="eager" decoding="async">
                 </a>
                 <h1 class="login-title">Connexion Locataire</h1>
                 <p class="login-subtitle">Accédez à votre espace de gestion</p>

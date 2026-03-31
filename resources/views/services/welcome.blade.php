@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>L'Art de Recevoir • Accueil Personnalisé | Casa Del Concierge</title>
+    <link rel="icon" href="{{ asset('images/logo.jpeg') }}" type="image/jpeg">
+    <link rel="apple-touch-icon" href="{{ asset('images/logo.jpeg') }}">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -299,7 +301,9 @@
     <div class="cursor-ring"></div>
 
     <nav style="position: fixed; top: 0; width: 100%; padding: 30px clamp(1.5rem, 5vw, 4rem); display: flex; justify-content: space-between; z-index: 50; mix-blend-mode: difference; color: white;">
-        <a href="{{ route('welcome') }}" style="font-weight: 800; font-size: 20px; text-decoration: none; color: inherit;" class="hover-trigger">CDC.</a>
+        <a href="{{ route('welcome') }}" style="text-decoration: none; color: inherit; line-height: 0; display: inline-block;" class="hover-trigger" title="Casa Del Concierge — Accueil">
+            <img src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" style="height:2.5rem;max-height:40px;width:auto;object-fit:contain;">
+        </a>
         <a href="{{ route('welcome') }}" style="font-weight: 600; text-decoration: none; color: inherit; font-size: 14px; letter-spacing: 0.1em;" class="hover-trigger">FERMER</a>
     </nav>
 

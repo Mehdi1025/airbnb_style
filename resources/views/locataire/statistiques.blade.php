@@ -3,7 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Statistiques - Dashboard Locataire</title>
+    <title>Statistiques - Casa Del Concierge</title>
+    <link rel="icon" href="{{ asset('images/logo.jpeg') }}" type="image/jpeg">
+    <link rel="apple-touch-icon" href="{{ asset('images/logo.jpeg') }}">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
     <style>
@@ -64,23 +66,25 @@
             gap: 20px;
         }
 
-        .logo-icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 35px;
-            color: white;
-            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
-            animation: pulse 2s infinite;
+        .logo-mark {
+            display: block;
+            line-height: 0;
+            flex-shrink: 0;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+        .logo-mark img {
+            height: 56px;
+            width: auto;
+            max-height: 70px;
+            object-fit: contain;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .logo-mark img {
+                height: 44px;
+                max-height: 52px;
+            }
         }
 
         .logo-text h1 {
@@ -550,12 +554,6 @@
                 height: 300px;
             }
 
-            .logo-icon {
-                width: 60px;
-                height: 60px;
-                font-size: 28px;
-            }
-
             .logo-text h1 {
                 font-size: 28px;
             }
@@ -596,7 +594,9 @@
         <div class="header fade-in">
             <div class="header-content">
                 <div class="logo">
-                    <div class="logo-icon">📊</div>
+                    <a href="{{ url('/') }}" class="logo-mark" title="Casa Del Concierge — Accueil">
+                        <img src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" width="180" height="56" loading="eager" decoding="async">
+                    </a>
                     <div class="logo-text">
                         <h1>Tableau de Bord Analytique</h1>
                         <p>Analysez et optimisez votre portefeuille immobilier</p>

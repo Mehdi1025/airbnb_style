@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>L'Art du Détail • Casa Del Concierge</title>
+    <link rel="icon" href="{{ asset('images/logo.jpeg') }}" type="image/jpeg">
+    <link rel="apple-touch-icon" href="{{ asset('images/logo.jpeg') }}">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -102,7 +104,9 @@
     <div class="cursor-circle"></div>
 
     <nav class="fixed top-0 w-full p-8 flex justify-between items-center z-50 mix-blend-exclusion text-white">
-        <a href="{{ route('welcome') }}" class="text-xl tracking-widest uppercase font-bold hover-target">CDC / Quality</a>
+        <a href="{{ route('welcome') }}" class="hover-target inline-block leading-none" title="Casa Del Concierge — Accueil">
+            <img src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" class="h-10 w-auto max-h-[40px] object-contain">
+        </a>
         <a href="{{ route('welcome') }}" class="text-sm tracking-widest hover-target group">
             <span class="block overflow-hidden h-5">
                 <span class="block group-hover:-translate-y-full transition-transform duration-500">Fermer</span>

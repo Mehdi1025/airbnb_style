@@ -3,7 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ajouter une Maison - Espace Locataire</title>
+    <title>Ajouter une Maison - Casa Del Concierge</title>
+    <link rel="icon" href="{{ asset('images/logo.jpeg') }}" type="image/jpeg">
+    <link rel="apple-touch-icon" href="{{ asset('images/logo.jpeg') }}">
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -14,8 +16,11 @@
     <header class="bg-white dark:bg-[#161615] shadow-sm border-b border-[#e3e3e0] dark:border-[#3E3E3A]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
-                <div class="flex items-center">
-                    <h1 class="text-xl font-semibold text-[#1b1b18] dark:text-[#EDEDEC]">🏠 Ajouter une Maison</h1>
+                <div class="flex items-center gap-3">
+                    <a href="{{ url('/') }}" class="shrink-0" title="Casa Del Concierge — Accueil">
+                        <img src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" class="h-10 w-auto max-h-[40px] object-contain">
+                    </a>
+                    <h1 class="text-xl font-semibold text-[#1b1b18] dark:text-[#EDEDEC]">Ajouter une Maison</h1>
                 </div>
                 <div class="flex items-center space-x-4">
                     <span class="text-[#706f6c] dark:text-[#A1A09A]">

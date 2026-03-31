@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Emplacements Privilégiés • Casa Del Concierge</title>
+    <link rel="icon" href="{{ asset('images/logo.jpeg') }}" type="image/jpeg">
+    <link rel="apple-touch-icon" href="{{ asset('images/logo.jpeg') }}">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -73,18 +75,21 @@
 
     <div class="cursor"></div>
 
-    <div class="fixed inset-0 bg-[#1a1a1a] z-[1001] flex items-center justify-center text-[#f5f2eb] transition-transform duration-1000 ease-[cubic-bezier(0.77,0,0.175,1)]" id="preloader">
-        <div class="text-4xl serif italic">Casa Del Concierge</div>
+    <div class="fixed inset-0 bg-[#1a1a1a] z-[1001] flex flex-col items-center justify-center gap-6 text-[#f5f2eb] transition-transform duration-1000 ease-[cubic-bezier(0.77,0,0.175,1)]" id="preloader">
+        <img src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" class="h-14 w-auto max-h-[56px] object-contain">
+        <div class="text-2xl serif italic">Casa Del Concierge</div>
     </div>
 
     <nav class="fixed top-0 w-full p-8 flex justify-between items-center z-50 mix-blend-difference text-white">
-        <a href="#" class="text-2xl font-bold tracking-tighter hover-trigger" data-cursor="link">CDC.</a>
+        <a href="{{ route('welcome') }}" class="hover-trigger inline-block leading-none" data-cursor="link" title="Casa Del Concierge — Accueil">
+            <img src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" class="h-10 w-auto max-h-[40px] object-contain">
+        </a>
         <div class="hidden md:flex gap-8 text-sm uppercase tracking-widest">
-            <a href="#" class="hover-trigger relative group" data-cursor="link">
+            <a href="{{ route('welcome') }}" class="hover-trigger relative group" data-cursor="link">
                 Accueil
                 <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-white transition-all group-hover:w-full"></span>
             </a>
-            <a href="#" class="hover-trigger relative group" data-cursor="link">
+            <a href="{{ route('houses.index') }}" class="hover-trigger relative group" data-cursor="link">
                 Biens
                 <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-white transition-all group-hover:w-full"></span>
             </a>

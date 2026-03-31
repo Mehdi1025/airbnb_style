@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>L'Ombre Bienveillante • Casa Del Concierge</title>
+    <link rel="icon" href="{{ asset('images/logo.jpeg') }}" type="image/jpeg">
+    <link rel="apple-touch-icon" href="{{ asset('images/logo.jpeg') }}">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -104,6 +106,7 @@
 <body class="antialiased">
 
     <div class="loader">
+        <img src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" style="height:3rem;width:auto;max-height:52px;object-fit:contain;margin-bottom:1rem;">
         <div class="font-serif text-2xl tracking-widest">CASA DEL CONCIERGE</div>
         <div class="loader-line"></div>
     </div>

@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Nos Biens - Découvrez nos propriétés exceptionnelles</title>
+    <link rel="icon" href="{{ asset('images/logo.jpeg') }}" type="image/jpeg">
+    <link rel="apple-touch-icon" href="{{ asset('images/logo.jpeg') }}">
     
     <!-- Airbnb-like Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -78,8 +80,6 @@
         
         .logo {
             color: var(--airbnb-pink);
-            font-size: 24px;
-            font-weight: 700;
             text-decoration: none;
             display: flex;
             align-items: center;
@@ -88,11 +88,23 @@
         }
         
         .logo:hover {
-            transform: scale(1.05);
+            transform: scale(1.02);
+            opacity: 0.92;
         }
         
-        .logo i {
-            font-size: 28px;
+        .logo img {
+            height: 2.5rem;
+            width: auto;
+            max-height: 48px;
+            object-fit: contain;
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .logo img {
+                height: 2rem;
+                max-height: 40px;
+            }
         }
         
         .back-link {
@@ -779,9 +791,8 @@
 <body>
     <!-- Header identique à la page d'accueil -->
     <header id="header">
-        <a href="{{ route('welcome') }}" class="logo">
-            <i class="fas fa-home"></i>
-            <span>Casa Del Concierge</span>
+        <a href="{{ route('welcome') }}" class="logo" title="Casa Del Concierge — Accueil">
+            <img src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" width="180" height="48" loading="eager" decoding="async">
         </a>
         <a href="{{ route('welcome') }}" class="back-link">
             <i class="fas fa-arrow-left"></i>

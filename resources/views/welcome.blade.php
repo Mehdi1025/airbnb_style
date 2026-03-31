@@ -11,10 +11,11 @@
     <meta property="og:description" content="Séjours d'exception, service de conciergerie premium et propriétés sélectionnées avec soin partout en France.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80">
+    <meta property="og:image" content="{{ asset('images/logo.jpeg') }}">
     
-    <!-- Favicon -->
-    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+    <!-- Favicon & app icon (logo officiel) -->
+    <link rel="icon" href="{{ asset('images/logo.jpeg') }}" type="image/jpeg">
+    <link rel="apple-touch-icon" href="{{ asset('images/logo.jpeg') }}">
     
     <!-- JSON-LD Schema.org -->
     <script type="application/ld+json">
@@ -876,12 +877,22 @@
         }
         
         .logo:hover {
-            opacity: 0.8;
+            opacity: 0.85;
         }
         
-        .logo i {
-            font-size: 26px;
-            color: #FF385C;
+        .logo img.site-logo-img {
+            height: 2.5rem;
+            width: auto;
+            max-height: 48px;
+            object-fit: contain;
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .logo img.site-logo-img {
+                height: 2rem;
+                max-height: 40px;
+            }
         }
         
         /* Center Navigation */
@@ -1138,16 +1149,9 @@
                 height: 64px;
             }
             
-            .logo {
-                font-size: 16px;
-            }
-            
-            .logo i {
-                font-size: 22px;
-            }
-            
-            .logo span {
-                display: none;
+            .logo img.site-logo-img {
+                height: 1.875rem;
+                max-height: 36px;
             }
             
             .user-menu {
@@ -1717,6 +1721,32 @@
             top: 0;
         }
         
+        .footer-brand {
+            text-align: center;
+            padding: var(--space-10) 0 var(--space-12);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer-brand a {
+            display: inline-block;
+            line-height: 0;
+        }
+        
+        .footer-brand .footer-logo-img {
+            height: 3.5rem;
+            width: auto;
+            max-height: 64px;
+            object-fit: contain;
+        }
+        
+        @media (max-width: 768px) {
+            .footer-brand .footer-logo-img {
+                height: 2.75rem;
+                max-height: 52px;
+            }
+        }
+        
         .footer-content {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -2074,9 +2104,8 @@
     <!-- Header - Cinematic Style -->
     <header id="mainHeader">
         <!-- Logo -->
-        <a href="/" class="logo">
-            <i class="fab fa-airbnb"></i>
-            <span>CasaDelConcierge</span>
+        <a href="{{ url('/') }}" class="logo" title="Casa Del Concierge — Accueil">
+            <img src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" class="site-logo-img" width="180" height="48" loading="eager" decoding="async">
         </a>
         
         <!-- Center Navigation -->
@@ -2165,10 +2194,9 @@
         <div class="mobile-menu-overlay"></div>
         <div class="mobile-menu-panel">
             <div class="mobile-menu-header">
-                <div class="mobile-menu-logo">
-                    <i class="fab fa-airbnb"></i>
-                    <span>Casa Del Concierge</span>
-                </div>
+                <a href="{{ url('/') }}" class="mobile-menu-logo" title="Accueil">
+                    <img src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" class="site-logo-img" style="height:2rem;max-height:40px;width:auto;object-fit:contain;">
+                </a>
                 <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Fermer le menu">
                     <i class="fas fa-times"></i>
                 </button>
@@ -5692,6 +5720,11 @@
     <!-- Footer -->
     <footer>
         <div class="container">
+            <div class="footer-brand">
+                <a href="{{ url('/') }}" title="Casa Del Concierge — Accueil">
+                    <img src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" class="footer-logo-img" width="200" height="64" loading="lazy" decoding="async">
+                </a>
+            </div>
             <div class="footer-content">
                 <div class="footer-column">
                     <h4 data-i18n="footer.assistance">Assistance</h4>

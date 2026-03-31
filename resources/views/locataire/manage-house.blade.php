@@ -4,7 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Gérer {{ $house->description }} | ImmoManager</title>
+    <title>Gérer {{ $house->description }} | Casa Del Concierge</title>
+    <link rel="icon" href="{{ asset('images/logo.jpeg') }}" type="image/jpeg">
+    <link rel="apple-touch-icon" href="{{ asset('images/logo.jpeg') }}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     
@@ -429,6 +431,11 @@
 </head>
 <body>
     <div class="container">
+        <div style="text-align:center;margin-bottom:20px;">
+            <a href="{{ url('/') }}" title="Casa Del Concierge — Accueil" style="display:inline-block;line-height:0;">
+                <img src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" style="height:2.75rem;max-height:48px;width:auto;object-fit:contain;">
+            </a>
+        </div>
         <a href="{{ route('locataire.dashboard') }}" class="back-link">
             <i class="fas fa-arrow-left"></i>
             Retour au dashboard

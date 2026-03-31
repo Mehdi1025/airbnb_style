@@ -1,8 +1,8 @@
 <div class="navbar-area">
     <!-- Menu For Mobile Device -->
     <div class="mobile-nav">
-        <a href="#" class="logo">
-            <span>Logo</span>
+        <a href="{{ url('/') }}" class="logo">
+            <img src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" style="height:2.5rem;max-height:40px;width:auto;object-fit:contain;">
         </a>
     </div>
 
@@ -10,8 +10,8 @@
     <div class="main-nav">
         <div class="container">
             <nav class="navbar navbar-expand-md navbar-light">
-                <a class="navbar-brand" href="#">
-                    <span>Logo</span>
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    <img src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" style="height:2.75rem;max-height:44px;width:auto;object-fit:contain;">
                 </a>
 
                 <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">

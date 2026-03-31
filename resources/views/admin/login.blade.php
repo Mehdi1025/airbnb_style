@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Connexion Admin</title>
+    <link rel="icon" href="{{ asset('images/logo.jpeg') }}" type="image/jpeg">
+    <link rel="apple-touch-icon" href="{{ asset('images/logo.jpeg') }}">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -23,10 +25,26 @@
             width: 100%;
             max-width: 400px;
         }
+        .admin-login-logo {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        .admin-login-logo a {
+            display: inline-block;
+            line-height: 0;
+        }
+        .admin-login-logo img {
+            height: 3rem;
+            width: auto;
+            max-height: 52px;
+            object-fit: contain;
+        }
         h1 {
             text-align: center;
             color: #333;
             margin-bottom: 30px;
+            font-size: 1.35rem;
+            font-weight: 600;
         }
         .form-group {
             margin-bottom: 20px;
@@ -77,7 +95,12 @@
 </head>
 <body>
     <div class="login-container">
-        <h1>🔐 Connexion Admin</h1>
+        <div class="admin-login-logo">
+            <a href="{{ url('/') }}" title="Casa Del Concierge — Accueil">
+                <img src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" width="200" height="56" loading="eager" decoding="async">
+            </a>
+        </div>
+        <h1>Connexion administrateur</h1>
         
         @if ($errors->any())
             <div class="error">

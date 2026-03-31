@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Dashboard Admin - Awwwards Premium | ImmoManager</title>
+    <title>Dashboard Admin - Casa Del Concierge</title>
+    <link rel="icon" href="{{ asset('images/logo.jpeg') }}" type="image/jpeg">
+    <link rel="apple-touch-icon" href="{{ asset('images/logo.jpeg') }}">
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -120,29 +122,23 @@
         .sidebar-logo {
             width: 48px;
             height: 48px;
-            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
             border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
-            color: white;
-            box-shadow: 0 8px 24px rgba(139, 92, 246, 0.4);
+            overflow: hidden;
+            flex-shrink: 0;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 4px;
+            box-shadow: 0 8px 24px rgba(139, 92, 246, 0.35);
             position: relative;
+            text-decoration: none;
         }
         
-        .sidebar-logo::after {
-            content: '';
-            position: absolute;
-            inset: -2px;
-            border-radius: 14px;
-            padding: 2px;
-            background: linear-gradient(135deg, #8b5cf6, #ec4899);
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            opacity: 0.5;
-            animation: pulse-glow 2s ease-in-out infinite;
+        .sidebar-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
         
         @keyframes pulse-glow {
@@ -952,9 +948,9 @@
     <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <div class="sidebar-logo">
-                <i class="fas fa-shield-alt"></i>
-            </div>
+            <a href="{{ url('/') }}" class="sidebar-logo" title="Casa Del Concierge — Accueil">
+                <img src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge">
+            </a>
             <div class="sidebar-title">Admin Panel</div>
         </div>
         

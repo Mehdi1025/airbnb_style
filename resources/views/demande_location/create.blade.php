@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Devenir Locataire Partenaire - Casa Del Concierge</title>
+    <link rel="icon" href="{{ asset('images/logo.jpeg') }}" type="image/jpeg">
+    <link rel="apple-touch-icon" href="{{ asset('images/logo.jpeg') }}">
     
     <!-- Airbnb-like Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -559,6 +561,11 @@
     <!-- Header -->
     <div class="page-header">
         <div class="page-header-content">
+            <div style="text-align:center;margin-bottom:1.25rem;">
+                <a href="{{ url('/') }}" title="Casa Del Concierge — Accueil" style="display:inline-block;line-height:0;">
+                    <img src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" style="height:3rem;max-height:52px;width:auto;object-fit:contain;" width="200" height="56" loading="eager" decoding="async">
+                </a>
+            </div>
             <h1>
                 <i class="fas fa-home"></i>
                 <span>Devenez Locataire Partenaire</span>

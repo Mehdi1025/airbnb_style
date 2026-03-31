@@ -4,7 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Dashboard Locataire | ImmoManager</title>
+    <title>Dashboard Locataire | Casa Del Concierge</title>
+    <link rel="icon" href="{{ asset('images/logo.jpeg') }}" type="image/jpeg">
+    <link rel="apple-touch-icon" href="{{ asset('images/logo.jpeg') }}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <!-- ApexCharts -->
@@ -116,13 +118,7 @@
         .brand {
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-size: 24px;
-            font-weight: 900;
-            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #818cf8 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            justify-content: center;
             margin-bottom: 48px;
             padding-bottom: 24px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -142,12 +138,16 @@
             animation: slideInLeft 0.8s var(--ease-out-expo) 0.3s both;
         }
 
-        .brand i {
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-size: 28px;
+        .brand a {
+            display: block;
+            line-height: 0;
+        }
+
+        .brand img.brand-logo-img {
+            height: 2.5rem;
+            width: auto;
+            max-height: 48px;
+            object-fit: contain;
         }
 
         .nav-menu { 
@@ -1247,7 +1247,9 @@
 
     <aside class="sidebar">
         <div class="brand">
-            <i class="fas fa-home"></i> ImmoManager
+            <a href="{{ url('/') }}" title="Casa Del Concierge — Accueil">
+                <img src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" class="brand-logo-img" width="180" height="48" loading="eager" decoding="async">
+            </a>
         </div>
         <nav class="nav-menu">
             <a href="#" class="nav-link active" data-section="dashboard">

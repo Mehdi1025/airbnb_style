@@ -3,7 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Inscription - {{ config('app.name', 'Laravel') }}</title>
+    <title>Inscription - Casa Del Concierge</title>
+    <link rel="icon" href="{{ asset('images/logo.jpeg') }}" type="image/jpeg">
+    <link rel="apple-touch-icon" href="{{ asset('images/logo.jpeg') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cereal:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -62,13 +64,24 @@
         }
 
         .auth-logo a {
-            color: var(--airbnb-pink);
-            font-size: 1.75rem;
-            font-weight: 700;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            justify-content: center;
+        }
+
+        .auth-logo img {
+            height: 2.75rem;
+            width: auto;
+            max-height: 52px;
+            object-fit: contain;
+        }
+
+        @media (max-width: 480px) {
+            .auth-logo img {
+                height: 2.5rem;
+                max-height: 48px;
+            }
         }
 
         .auth-title {
@@ -238,9 +251,8 @@
         <div class="auth-form-container">
             <div class="auth-form">
                 <div class="auth-logo">
-                    <a href="{{ url('/') }}">
-                        <i class="fab fa-airbnb"></i>
-                        <span>AIIR</span>
+                    <a href="{{ url('/') }}" title="Casa Del Concierge — Accueil">
+                        <img src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" width="200" height="56" loading="eager" decoding="async">
                     </a>
                 </div>
                 <h1 class="auth-title">Créez votre compte</h1>
@@ -335,7 +347,7 @@
                     </button>
 
                     <p class="terms-text">
-                        En vous inscrivant, vous acceptez les Conditions d'utilisation de AIIR. Votre adresse e-mail sera utilisée conformément à notre Politique de confidentialité. AIIR peut vous envoyer des offres, des mises à jour et des messages promotionnels.
+                        En vous inscrivant, vous acceptez les Conditions d'utilisation de Casa Del Concierge. Votre adresse e-mail sera utilisée conformément à notre Politique de confidentialité. Casa Del Concierge peut vous envoyer des offres, des mises à jour et des messages promotionnels.
                     </p>
                 </form>
 
