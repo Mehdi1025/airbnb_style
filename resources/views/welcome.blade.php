@@ -848,67 +848,68 @@
         /* ============================================
            HEADER — shell + scroll (layout = Tailwind sur #mainHeader)
            ============================================ */
-        #mainHeader.scrolled {
-            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.06);
+        #mainHeader.lux-nav.scrolled {
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
         }
         
-        #mainHeader .premium-nav-shell {
-            transition: padding 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+        #mainHeader.lux-nav .lux-nav-shell {
+            transition: padding 0.45s cubic-bezier(0.22, 1, 0.36, 1);
         }
         
-        #mainHeader.scrolled .premium-nav-shell {
+        #mainHeader.lux-nav.scrolled .lux-nav-shell {
             padding-top: 0.875rem;
             padding-bottom: 0.875rem;
         }
         
-        @media (min-width: 640px) {
-            #mainHeader.scrolled .premium-nav-shell {
-                padding-top: 1rem;
-                padding-bottom: 1rem;
-            }
-        }
-        
-        @media (min-width: 1024px) {
-            #mainHeader.scrolled .premium-nav-shell {
-                padding-top: 1.125rem;
-                padding-bottom: 1.125rem;
-            }
-        }
-        
-        /* Logo height transition + scroll shrink (overrides Tailwind utilities) */
+        /* Logo — h-10 base, léger rétrécissement au scroll */
         #navLogoImg {
             transition: height 0.5s cubic-bezier(0.22, 1, 0.36, 1), max-height 0.5s cubic-bezier(0.22, 1, 0.36, 1);
         }
         
         #navLogoImg.nav-logo--scrolled {
-            height: 2.5rem !important;
-            max-height: 2.5rem !important;
+            height: 2.25rem !important;
+            max-height: 2.25rem !important;
         }
         
-        @media (min-width: 768px) {
-            #navLogoImg.nav-logo--scrolled {
-                height: 3rem !important;
-                max-height: 3rem !important;
-            }
+        /* Barre sombre : boutons & langue */
+        #mainHeader.lux-nav .nav-btn.lux-nav-btn {
+            color: rgba(255, 255, 255, 0.92);
+            font-weight: 300;
         }
         
-        @media (min-width: 1024px) {
-            #navLogoImg.nav-logo--scrolled {
-                height: 3.5rem !important;
-                max-height: 3.5rem !important;
-            }
+        #mainHeader.lux-nav .nav-btn.lux-nav-btn:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.08);
         }
         
-        @media (min-width: 1280px) {
-            #navLogoImg.nav-logo--scrolled {
-                height: 4rem !important;
-                max-height: 4rem !important;
-            }
+        #mainHeader.lux-nav .language-selector.lux-lang {
+            padding: 8px 10px;
+            border-radius: 9999px;
         }
         
-        #mainHeader.scrolled .premium-nav-logo-inner {
-            padding: 0.375rem;
-            border-radius: 0.625rem;
+        #mainHeader.lux-nav .language-selector.lux-lang:hover {
+            background: rgba(255, 255, 255, 0.06);
+        }
+        
+        #mainHeader.lux-nav .language-selector.lux-lang i {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 14px;
+            font-weight: 300;
+        }
+        
+        #mainHeader.lux-nav .language-selector.lux-lang select {
+            color: #fff;
+            font-weight: 300;
+        }
+        
+        #mainHeader.lux-nav .nav-menu-btn.lux-burger {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+        }
+        
+        #mainHeader.lux-nav .nav-menu-btn.lux-burger:hover {
+            background: rgba(255, 255, 255, 0.12);
         }
         
         /* User menu */
@@ -2014,10 +2015,11 @@
             top: 0;
             right: 0;
             bottom: 0;
-            width: 300px;
-            background: white;
+            width: min(300px, 92vw);
+            background: #030712;
+            border-left: 1px solid rgba(255, 255, 255, 0.08);
             transform: translateX(100%);
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             flex-direction: column;
             padding: 24px;
@@ -2033,28 +2035,40 @@
         }
         .mobile-menu-link {
             display: block;
-            padding: 12px 0;
-            font-size: 18px;
-            font-weight: 500;
-            color: var(--neutral-900);
+            padding: 14px 0;
+            font-size: 15px;
+            font-weight: 300;
+            letter-spacing: 0.02em;
+            color: rgba(255, 255, 255, 0.92);
             text-decoration: none;
-            border-bottom: 1px solid var(--neutral-100);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            transition: color 0.2s ease;
+        }
+        .mobile-menu-link:hover {
+            color: #fff;
         }
         .mobile-menu-cta {
             display: flex;
             align-items: center;
             gap: 10px;
             margin-top: 20px;
-            color: var(--primary);
-            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 400;
             text-decoration: none;
         }
         .mobile-menu-close {
-            background: none;
-            border: none;
-            font-size: 24px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 9999px;
+            width: 40px;
+            height: 40px;
+            font-size: 18px;
             cursor: pointer;
-            color: var(--neutral-600);
+            color: rgba(255, 255, 255, 0.85);
+            transition: background 0.2s ease;
+        }
+        .mobile-menu-close:hover {
+            background: rgba(255, 255, 255, 0.12);
         }
     </style>
 </head>
@@ -2062,103 +2076,96 @@
     <!-- Scroll Indicator -->
     <div class="scroll-indicator" id="scrollIndicator"></div>
     
-    <!-- Header — premium navbar (Tailwind) -->
-    <header id="mainHeader" class="fixed top-0 left-0 right-0 z-[1000] border-b border-neutral-200/60 bg-white/80 backdrop-blur-2xl transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] supports-[backdrop-filter]:bg-white/[0.72]">
-        <div class="premium-nav-shell mx-auto w-full max-w-[1920px] px-4 py-6 sm:px-6 sm:py-7 md:px-10 md:py-8 lg:px-14 lg:py-8 xl:px-20">
-            <div class="relative flex min-h-[4.25rem] items-center sm:min-h-[4.5rem] lg:grid lg:min-h-[5.25rem] lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] lg:items-center lg:gap-8 xl:min-h-[5.75rem] xl:gap-10">
-                <!-- Mobile: balance gauche pour centrer le logo -->
-                <div class="w-9 shrink-0 sm:w-10 lg:hidden" aria-hidden="true"></div>
+    <!-- Header — luxe / Awwwards (fond sombre, Tailwind) -->
+    <header id="mainHeader" class="lux-nav fixed top-0 left-0 right-0 z-[1000] w-full border-b border-white/10 bg-gray-950/95 backdrop-blur-md transition-all duration-500 ease-out supports-[backdrop-filter]:bg-gray-950/90">
+        <div class="lux-nav-shell relative mx-auto flex w-full max-w-[1920px] items-center justify-between px-6 py-5 md:px-10">
+            <!-- Mobile : équilibre pour logo centré -->
+            <div class="w-11 shrink-0 lg:hidden" aria-hidden="true"></div>
 
-                <!-- Desktop : liens alignés à droite de la colonne gauche (symétrie luxe) -->
-                <nav class="relative z-10 hidden min-w-0 items-center justify-end lg:flex" aria-label="Navigation principale">
-                    <div class="inline-flex items-center gap-0.5 rounded-full border border-neutral-200/70 bg-neutral-100/95 p-1 shadow-[0_1px_0_rgba(255,255,255,0.85)_inset,0_4px_24px_rgba(0,0,0,0.05)]">
-                        @php $housesActive = request()->routeIs('houses.index') || request()->routeIs('houses.show'); @endphp
-                        <a href="{{ route('houses.index') }}" class="rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300 {{ $housesActive ? 'bg-white text-neutral-900 shadow-[0_2px_14px_rgba(0,0,0,0.08)] ring-1 ring-black/[0.04]' : 'text-neutral-600 hover:text-neutral-900' }}">Propriétés</a>
-                        <a href="#about" class="rounded-full px-5 py-2.5 text-sm font-medium text-neutral-600 transition-colors duration-300 hover:text-neutral-900">Pourquoi nous</a>
-                        <a href="#services" class="rounded-full px-5 py-2.5 text-sm font-medium text-neutral-600 transition-colors duration-300 hover:text-neutral-900">Services</a>
-                        <a href="#contact" class="rounded-full px-5 py-2.5 text-sm font-medium text-neutral-600 transition-colors duration-300 hover:text-neutral-900">Contact</a>
-                    </div>
-                </nav>
-
-                <!-- Logo : centré mobile, colonne centrale desktop -->
-                <a href="{{ url('/') }}" class="absolute left-1/2 top-1/2 z-[1] flex -translate-x-1/2 -translate-y-1/2 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900/20 focus-visible:ring-offset-2 lg:relative lg:col-start-2 lg:row-start-1 lg:left-auto lg:top-auto lg:z-auto lg:translate-x-0 lg:translate-y-0" title="Casa Del Concierge — Accueil">
-                    <span class="premium-nav-logo-inner inline-flex items-center justify-center rounded-xl bg-white p-2 shadow-sm ring-1 ring-neutral-900/[0.07] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] mix-blend-multiply">
-                        <img id="navLogoImg" src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" width="320" height="128" loading="eager" decoding="async" class="h-12 w-auto max-w-[min(78vw,20rem)] object-contain transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] sm:h-12 md:h-16 lg:h-20 xl:h-24">
-                    </span>
-                </a>
-
-                <!-- Actions -->
-                <div class="relative z-[2] flex min-w-0 flex-1 items-center justify-end gap-1 sm:gap-2 lg:col-start-3 lg:flex-none lg:justify-start lg:pl-4 xl:pl-10">
-                    <div class="user-menu">
-            <div class="language-selector">
-                <i class="fas fa-globe"></i>
-                <select id="languageSelector" onchange="switchLanguage(this.value)">
-                    <option value="fr" selected>FR</option>
-                    <option value="en">EN</option>
-                    <option value="de">DE</option>
-                </select>
-            </div>
-            
-            @auth
-                @if(auth()->user()->role === 'locataire')
-                    <a href="{{ route('locataire.dashboard') }}" class="nav-btn">
-                        <i class="fas fa-th-large"></i>
-                        <span>Dashboard</span>
-                    </a>
-                @else
-                    <a href="{{ route('reservations.index') }}" class="nav-btn">
-                        <i class="fas fa-calendar-check"></i>
-                        <span>Réservations</span>
-                    </a>
-                @endif
-                <form action="{{ route('logout') }}" method="POST" style="display: inline;">
-                    @csrf
-                    <button type="submit" class="nav-btn">
-                        <i class="fas fa-sign-out-alt"></i>
-                        <span>Déconnexion</span>
-                    </button>
-                </form>
-            @else
-                <!-- Dropdown Connexion -->
-                <div class="nav-dropdown">
-                    <button class="nav-btn nav-dropdown-trigger" id="loginDropdownBtn">
-                        <span>Se connecter</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="nav-dropdown-menu" id="loginDropdownMenu">
-                        <a href="{{ route('login') }}" class="nav-dropdown-item">
-                            <div class="nav-dropdown-icon">
-                                <i class="fas fa-user"></i>
-                            </div>
-                            <div class="nav-dropdown-content">
-                                <span class="nav-dropdown-title">Espace Voyageur</span>
-                                <span class="nav-dropdown-desc">Réservez votre prochain séjour</span>
-                            </div>
-                        </a>
-                        <a href="{{ route('locataire.login.form') }}" class="nav-dropdown-item">
-                            <div class="nav-dropdown-icon loueur">
-                                <i class="fas fa-home"></i>
-                            </div>
-                            <div class="nav-dropdown-content">
-                                <span class="nav-dropdown-title">Espace Loueur</span>
-                                <span class="nav-dropdown-desc">Gérez vos propriétés</span>
-                            </div>
-                        </a>
-                    </div>
+            <!-- Gauche : liens (desktop) -->
+            <nav class="relative z-10 hidden min-w-0 flex-1 items-center justify-start lg:flex" aria-label="Navigation principale">
+                @php $housesActive = request()->routeIs('houses.index') || request()->routeIs('houses.show'); @endphp
+                <div class="flex items-center space-x-8">
+                    <a href="{{ route('houses.index') }}" class="text-sm font-light tracking-wide text-white transition hover:text-white/75 {{ $housesActive ? 'opacity-100' : '' }}">Propriétés</a>
+                    <a href="#about" class="text-sm font-light tracking-wide text-white/90 transition hover:text-white">Pourquoi nous</a>
+                    <a href="#services" class="text-sm font-light tracking-wide text-white/90 transition hover:text-white">Services</a>
+                    <a href="#contact" class="text-sm font-light tracking-wide text-white/90 transition hover:text-white">Contact</a>
                 </div>
-                
-                <!-- Bouton Nous Rejoindre -->
-                <a href="/demande-location" class="nav-btn primary">
-                    <i class="fas fa-handshake"></i>
-                    <span>Nous rejoindre</span>
-                </a>
-            @endauth
-            
-            <!-- Mobile menu button -->
-            <button type="button" class="nav-menu-btn inline-flex lg:hidden" id="navMenuBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileMenu">
-                <i class="fas fa-bars"></i>
-            </button>
+            </nav>
+
+            <!-- Centre : logo -->
+            <a href="{{ url('/') }}" class="absolute left-1/2 top-1/2 z-[1] flex -translate-x-1/2 -translate-y-1/2 focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500/40 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950 lg:static lg:z-auto lg:translate-x-0 lg:translate-y-0 lg:flex-none" title="Casa Del Concierge — Accueil">
+                <img id="navLogoImg" src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" width="200" height="80" loading="eager" decoding="async" class="h-10 w-auto max-w-[min(52vw,11rem)] object-contain mix-blend-lighten transition-all duration-500 ease-out sm:max-w-[13rem] md:max-w-[14rem]">
+            </a>
+
+            <!-- Droite : actions -->
+            <div class="relative z-[2] flex min-w-0 flex-1 items-center justify-end">
+                <div class="user-menu flex items-center space-x-2 text-sm text-white md:space-x-3">
+                    <div class="language-selector lux-lang flex items-center space-x-2 text-white">
+                        <i class="fas fa-globe text-sm font-light opacity-80"></i>
+                        <select id="languageSelector" onchange="switchLanguage(this.value)" class="cursor-pointer border-0 bg-transparent text-sm font-light text-white outline-none">
+                            <option value="fr" class="bg-gray-900 text-white">FR</option>
+                            <option value="en" class="bg-gray-900 text-white">EN</option>
+                            <option value="de" class="bg-gray-900 text-white">DE</option>
+                        </select>
                     </div>
+
+                    @auth
+                        @if(auth()->user()->role === 'locataire')
+                            <a href="{{ route('locataire.dashboard') }}" class="nav-btn lux-nav-btn inline-flex items-center space-x-2 rounded-full px-3 py-2">
+                                <i class="fas fa-th-large text-xs opacity-90"></i>
+                                <span class="hidden sm:inline">Dashboard</span>
+                            </a>
+                        @else
+                            <a href="{{ route('reservations.index') }}" class="nav-btn lux-nav-btn inline-flex items-center space-x-2 rounded-full px-3 py-2">
+                                <i class="fas fa-calendar-check text-xs opacity-90"></i>
+                                <span class="hidden sm:inline">Réservations</span>
+                            </a>
+                        @endif
+                        <form action="{{ route('logout') }}" method="POST" class="inline">
+                            @csrf
+                            <button type="submit" class="nav-btn lux-nav-btn inline-flex items-center space-x-2 rounded-full px-3 py-2">
+                                <i class="fas fa-sign-out-alt text-xs opacity-90"></i>
+                                <span class="hidden sm:inline">Déconnexion</span>
+                            </button>
+                        </form>
+                    @else
+                        <div class="nav-dropdown">
+                            <button type="button" class="nav-btn lux-nav-btn nav-dropdown-trigger inline-flex items-center space-x-2 rounded-full px-3 py-2 text-white" id="loginDropdownBtn">
+                                <i class="fas fa-user text-xs opacity-90"></i>
+                                <span class="hidden sm:inline">Se connecter</span>
+                                <i class="fas fa-chevron-down text-[10px] opacity-70"></i>
+                            </button>
+                            <div class="nav-dropdown-menu" id="loginDropdownMenu">
+                                <a href="{{ route('login') }}" class="nav-dropdown-item">
+                                    <div class="nav-dropdown-icon">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    <div class="nav-dropdown-content">
+                                        <span class="nav-dropdown-title">Espace Voyageur</span>
+                                        <span class="nav-dropdown-desc">Réservez votre prochain séjour</span>
+                                    </div>
+                                </a>
+                                <a href="{{ route('locataire.login.form') }}" class="nav-dropdown-item">
+                                    <div class="nav-dropdown-icon loueur">
+                                        <i class="fas fa-home"></i>
+                                    </div>
+                                    <div class="nav-dropdown-content">
+                                        <span class="nav-dropdown-title">Espace Loueur</span>
+                                        <span class="nav-dropdown-desc">Gérez vos propriétés</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <a href="/demande-location" class="inline-flex items-center justify-center rounded-full border border-yellow-600 bg-gray-950 px-4 py-2 text-xs font-light text-white transition-colors hover:bg-yellow-600 sm:px-6 sm:text-sm">
+                            Nous rejoindre
+                        </a>
+                    @endauth
+
+                    <button type="button" class="nav-menu-btn lux-burger inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full lg:hidden" id="navMenuBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileMenu">
+                        <i class="fas fa-bars text-sm"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -2169,8 +2176,8 @@
         <div class="mobile-menu-overlay"></div>
         <div class="mobile-menu-panel">
             <div class="mobile-menu-header">
-                <a href="{{ url('/') }}" class="mobile-menu-logo inline-flex items-center justify-center rounded-xl bg-white p-2.5 shadow-sm ring-1 ring-neutral-900/[0.06] mix-blend-multiply" title="Accueil">
-                    <img src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" class="h-14 w-auto max-w-[min(85vw,16rem)] object-contain sm:h-16" width="260" height="104" loading="eager" decoding="async">
+                <a href="{{ url('/') }}" class="mobile-menu-logo inline-flex items-center justify-center" title="Accueil">
+                    <img src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" class="h-10 w-auto max-w-[min(85vw,12rem)] object-contain mix-blend-lighten" width="200" height="80" loading="eager" decoding="async">
                 </a>
                 <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Fermer le menu">
                     <i class="fas fa-times"></i>
@@ -2180,6 +2187,7 @@
                 <a href="{{ route('houses.index') }}" class="mobile-menu-link">Propriétés</a>
                 <a href="#about" class="mobile-menu-link">Pourquoi nous</a>
                 <a href="#services" class="mobile-menu-link">Services</a>
+                <a href="#contact" class="mobile-menu-link">Contact</a>
                 <a href="#how-it-works" class="mobile-menu-link">Comment ça marche</a>
             </div>
             <div class="mobile-menu-footer">
@@ -2187,6 +2195,9 @@
                     <a href="{{ route('login') }}" class="mobile-menu-cta">
                         <i class="fas fa-user-circle"></i>
                         <span>Connexion</span>
+                    </a>
+                    <a href="/demande-location" class="mt-4 flex w-full items-center justify-center rounded-full border border-yellow-600 bg-transparent py-2.5 text-sm font-light text-white transition-colors hover:bg-yellow-600">
+                        Nous rejoindre
                     </a>
                 @endguest
                 @auth
