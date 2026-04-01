@@ -11,11 +11,11 @@
     <meta property="og:description" content="Séjours d'exception, service de conciergerie premium et propriétés sélectionnées avec soin partout en France.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:image" content="{{ asset('images/logo.jpeg') }}">
+    <meta property="og:image" content="{{ asset('images/logo.png') }}">
     
     <!-- Favicon & app icon (logo officiel) -->
-    <link rel="icon" href="{{ asset('images/logo.jpeg') }}" type="image/jpeg">
-    <link rel="apple-touch-icon" href="{{ asset('images/logo.jpeg') }}">
+    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png">
+    <link rel="apple-touch-icon" href="{{ asset('images/logo.png') }}">
     
     <!-- JSON-LD Schema.org -->
     <script type="application/ld+json">
@@ -43,6 +43,11 @@
     
     <!-- Navigation Enhancements -->
     <link rel="stylesheet" href="{{ asset('css/navigation-enhancements.css') }}">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { corePlugins: { preflight: false } };
+    </script>
     
     <!-- Lightbox CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
@@ -838,105 +843,54 @@
         }
         
         /* ============================================
-           HEADER - Clean Light Design
+           HEADER — luxe (PNG transparent, barre sombre)
            ============================================ */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 80px;
-            padding: 0 48px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-            z-index: 1000;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        #mainHeader.lux-nav.scrolled {
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
         }
         
-        header.scrolled {
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.04);
+        #mainHeader.lux-nav .lux-nav-btn {
+            color: rgba(255, 255, 255, 0.92);
+            font-weight: 300;
         }
         
-        /* Logo */
-        .logo {
-            color: var(--neutral-900);
-            font-size: 20px;
-            font-weight: 700;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            letter-spacing: -0.02em;
-            transition: all 0.3s ease;
+        #mainHeader.lux-nav .lux-nav-btn:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.08);
         }
         
-        .logo:hover {
-            opacity: 0.85;
+        #mainHeader.lux-nav .language-selector.lux-lang:hover {
+            background: rgba(255, 255, 255, 0.06);
         }
         
-        .logo img.site-logo-img {
-            height: 2.5rem;
-            width: auto;
-            max-height: 48px;
-            object-fit: contain;
-            display: block;
-        }
-        
-        @media (max-width: 768px) {
-            .logo img.site-logo-img {
-                height: 2rem;
-                max-height: 40px;
-            }
-        }
-        
-        /* Center Navigation */
-        .nav-center {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            padding: 4px;
-            background: var(--neutral-100);
-            border-radius: 50px;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-center-link {
-            padding: 10px 20px;
+        #mainHeader.lux-nav .language-selector.lux-lang i {
+            color: rgba(255, 255, 255, 0.75);
             font-size: 14px;
-            font-weight: 500;
-            color: var(--neutral-600);
-            text-decoration: none;
-            border-radius: 40px;
-            transition: all 0.25s ease;
+            font-weight: 300;
         }
         
-        .nav-center-link:hover {
-            color: var(--neutral-900);
+        #mainHeader.lux-nav .language-selector.lux-lang select {
+            color: #fff;
+            font-weight: 300;
         }
         
-        .nav-center-link.active {
-            color: var(--neutral-900);
-            background: #fff;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        #mainHeader.lux-nav .nav-menu-btn.lux-burger {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
         }
         
-        /* User menu */
+        #mainHeader.lux-nav .nav-menu-btn.lux-burger:hover {
+            background: rgba(255, 255, 255, 0.12);
+        }
+        
         .user-menu {
             display: flex;
             align-items: center;
             gap: 8px;
         }
         
-        /* Nav buttons */
+        /* Nav buttons (dropdown + actions) */
         .nav-btn {
             padding: 10px 18px;
             border-radius: 10px;
@@ -956,70 +910,6 @@
         .nav-btn:hover {
             color: var(--neutral-900);
             background: var(--neutral-100);
-        }
-        
-        /* Primary button */
-        .nav-btn.primary {
-            background: var(--neutral-900);
-            color: #fff;
-            font-weight: 600;
-            border-radius: 10px;
-        }
-        
-        .nav-btn.primary:hover {
-            background: var(--neutral-800);
-            transform: translateY(-1px);
-        }
-        
-        /* Language selector */
-        .language-selector {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            padding: 10px 12px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            background: transparent;
-        }
-        
-        .language-selector:hover {
-            background: var(--neutral-100);
-        }
-        
-        .language-selector i {
-            font-size: 15px;
-            color: var(--neutral-500);
-        }
-        
-        .language-selector select {
-            border: none;
-            background: transparent;
-            color: var(--neutral-700);
-            font-weight: 500;
-            font-size: 14px;
-            cursor: pointer;
-            outline: none;
-            appearance: none;
-        }
-        
-        /* Menu button */
-        .nav-menu-btn {
-            display: none;
-            width: 40px;
-            height: 40px;
-            align-items: center;
-            justify-content: center;
-            background: var(--neutral-100);
-            border: none;
-            border-radius: 10px;
-            color: var(--neutral-700);
-            cursor: pointer;
-            transition: all 0.25s ease;
-        }
-        
-        .nav-menu-btn:hover {
-            background: var(--neutral-200);
         }
         
         /* ============================================
@@ -1132,65 +1022,34 @@
             color: var(--neutral-500);
         }
         
-        /* Responsive Header */
-        @media (max-width: 1100px) {
-            .nav-center {
-                display: none;
-            }
-            
-            .nav-menu-btn {
-                display: flex;
-            }
-        }
-        
+        /* Responsive — lux nav */
         @media (max-width: 768px) {
-            header {
-                padding: 0 20px;
-                height: 64px;
-            }
-            
-            .logo img.site-logo-img {
-                height: 1.875rem;
-                max-height: 36px;
-            }
-            
             .user-menu {
                 gap: 6px;
             }
             
-            .nav-btn {
+            #mainHeader.lux-nav .nav-btn.lux-nav-btn {
                 padding: 8px 12px;
                 font-size: 13px;
             }
             
-            .nav-btn span {
+            #mainHeader.lux-nav .nav-btn.lux-nav-btn span {
                 display: none;
             }
             
-            .nav-btn i {
-                display: block;
-            }
-            
-            .nav-btn.primary {
-                width: 36px;
-                height: 36px;
-                padding: 0;
-                justify-content: center;
-            }
-            
-            .nav-dropdown-trigger span {
+            #mainHeader.lux-nav .nav-dropdown-trigger span {
                 display: none;
             }
             
-            .nav-dropdown-trigger i.fa-chevron-down {
+            #mainHeader.lux-nav .nav-dropdown-trigger i.fa-chevron-down {
                 display: none;
             }
             
-            .language-selector {
+            #mainHeader.lux-nav .language-selector.lux-lang {
                 padding: 8px;
             }
             
-            .language-selector select {
+            #mainHeader.lux-nav .language-selector.lux-lang select {
                 display: none;
             }
             
@@ -1729,23 +1588,12 @@
         }
         
         .footer-brand a {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
             line-height: 0;
         }
         
-        .footer-brand .footer-logo-img {
-            height: 3.5rem;
-            width: auto;
-            max-height: 64px;
-            object-fit: contain;
-        }
-        
-        @media (max-width: 768px) {
-            .footer-brand .footer-logo-img {
-                height: 2.75rem;
-                max-height: 52px;
-            }
-        }
+        /* Logo footer : styles portés par les classes utilitaires sur <img> */
         
         .footer-content {
             display: grid;
@@ -2053,10 +1901,11 @@
             top: 0;
             right: 0;
             bottom: 0;
-            width: 300px;
-            background: white;
+            width: min(300px, 92vw);
+            background: #030712;
+            border-left: 1px solid rgba(255, 255, 255, 0.08);
             transform: translateX(100%);
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             flex-direction: column;
             padding: 24px;
@@ -2072,28 +1921,35 @@
         }
         .mobile-menu-link {
             display: block;
-            padding: 12px 0;
-            font-size: 18px;
-            font-weight: 500;
-            color: var(--neutral-900);
+            padding: 14px 0;
+            font-size: 15px;
+            font-weight: 300;
+            letter-spacing: 0.02em;
+            color: rgba(255, 255, 255, 0.92);
             text-decoration: none;
-            border-bottom: 1px solid var(--neutral-100);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .mobile-menu-link:hover {
+            color: #fff;
         }
         .mobile-menu-cta {
             display: flex;
             align-items: center;
             gap: 10px;
             margin-top: 20px;
-            color: var(--primary);
-            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 400;
             text-decoration: none;
         }
         .mobile-menu-close {
-            background: none;
-            border: none;
-            font-size: 24px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 9999px;
+            width: 40px;
+            height: 40px;
+            font-size: 18px;
             cursor: pointer;
-            color: var(--neutral-600);
+            color: rgba(255, 255, 255, 0.85);
         }
     </style>
 </head>
@@ -2101,103 +1957,105 @@
     <!-- Scroll Indicator -->
     <div class="scroll-indicator" id="scrollIndicator"></div>
     
-    <!-- Header - Cinematic Style -->
-    <header id="mainHeader">
-        <!-- Logo -->
-        <a href="{{ url('/') }}" class="logo" title="Casa Del Concierge — Accueil">
-            <img src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" class="site-logo-img" width="180" height="48" loading="eager" decoding="async">
-        </a>
-        
-        <!-- Center Navigation -->
-        <nav class="nav-center">
-            <a href="{{ route('houses.index') }}" class="nav-center-link active">Propriétés</a>
-            <a href="#about" class="nav-center-link">Pourquoi nous</a>
-            <a href="#services" class="nav-center-link">Services</a>
-            <a href="#contact" class="nav-center-link">Contact</a>
-        </nav>
-        
-        <!-- Right Menu -->
-        <div class="user-menu">
-            <div class="language-selector">
-                <i class="fas fa-globe"></i>
-                <select id="languageSelector" onchange="switchLanguage(this.value)">
-                    <option value="fr" selected>FR</option>
-                    <option value="en">EN</option>
-                    <option value="de">DE</option>
-                </select>
-            </div>
-            
-            @auth
-                @if(auth()->user()->role === 'locataire')
-                    <a href="{{ route('locataire.dashboard') }}" class="nav-btn">
-                        <i class="fas fa-th-large"></i>
-                        <span>Dashboard</span>
-                    </a>
-                @else
-                    <a href="{{ route('reservations.index') }}" class="nav-btn">
-                        <i class="fas fa-calendar-check"></i>
-                        <span>Réservations</span>
-                    </a>
-                @endif
-                <form action="{{ route('logout') }}" method="POST" style="display: inline;">
-                    @csrf
-                    <button type="submit" class="nav-btn">
-                        <i class="fas fa-sign-out-alt"></i>
-                        <span>Déconnexion</span>
-                    </button>
-                </form>
-            @else
-                <!-- Dropdown Connexion -->
-                <div class="nav-dropdown">
-                    <button class="nav-btn nav-dropdown-trigger" id="loginDropdownBtn">
-                        <span>Se connecter</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="nav-dropdown-menu" id="loginDropdownMenu">
-                        <a href="{{ route('login') }}" class="nav-dropdown-item">
-                            <div class="nav-dropdown-icon">
-                                <i class="fas fa-user"></i>
-                            </div>
-                            <div class="nav-dropdown-content">
-                                <span class="nav-dropdown-title">Espace Voyageur</span>
-                                <span class="nav-dropdown-desc">Réservez votre prochain séjour</span>
-                            </div>
-                        </a>
-                        <a href="{{ route('locataire.login.form') }}" class="nav-dropdown-item">
-                            <div class="nav-dropdown-icon loueur">
-                                <i class="fas fa-home"></i>
-                            </div>
-                            <div class="nav-dropdown-content">
-                                <span class="nav-dropdown-title">Espace Loueur</span>
-                                <span class="nav-dropdown-desc">Gérez vos propriétés</span>
-                            </div>
-                        </a>
-                    </div>
+    <!-- Header — luxe, PNG transparent -->
+    <header id="mainHeader" class="lux-nav fixed top-0 left-0 right-0 z-[1000] w-full border-b border-white/10 bg-gray-950/95 backdrop-blur-md transition-all duration-500 ease-out supports-[backdrop-filter]:bg-gray-950/90">
+        <div class="lux-nav-shell relative mx-auto flex w-full max-w-[1920px] items-center justify-between px-6 py-6 md:px-10 md:py-8">
+            <div class="w-11 shrink-0 lg:hidden" aria-hidden="true"></div>
+
+            <nav class="relative z-10 hidden min-w-0 flex-1 items-center justify-start lg:flex" aria-label="Navigation principale">
+                @php $housesActive = request()->routeIs('houses.index') || request()->routeIs('houses.show'); @endphp
+                <div class="flex items-center space-x-8">
+                    <a href="{{ route('houses.index') }}" class="text-sm font-light tracking-wide text-white transition hover:text-white/75 {{ $housesActive ? 'opacity-100' : '' }}">Propriétés</a>
+                    <a href="#about" class="text-sm font-light tracking-wide text-white/90 transition hover:text-white">Pourquoi nous</a>
+                    <a href="#services" class="text-sm font-light tracking-wide text-white/90 transition hover:text-white">Services</a>
+                    <a href="#contact" class="text-sm font-light tracking-wide text-white/90 transition hover:text-white">Contact</a>
                 </div>
-                
-                <!-- Bouton Nous Rejoindre -->
-                <a href="/demande-location" class="nav-btn primary">
-                    <i class="fas fa-handshake"></i>
-                    <span>Nous rejoindre</span>
-                </a>
-            @endauth
-            
-            <!-- Mobile menu button -->
-            <button class="nav-menu-btn" id="navMenuBtn">
-                <i class="fas fa-bars"></i>
-            </button>
+            </nav>
+
+            <a href="{{ url('/') }}" class="absolute left-1/2 top-1/2 z-[1] inline-flex -translate-x-1/2 -translate-y-1/2 items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950 lg:relative lg:left-auto lg:top-auto lg:z-auto lg:translate-x-0 lg:translate-y-0" title="Casa Del Concierge — Accueil">
+                <img id="navLogoImg" src="{{ asset('images/logo.png') }}" alt="Casa Del Concierge" width="240" height="96" loading="eager" decoding="async" class="h-12 md:h-16 lg:h-20 w-auto object-contain transition-transform duration-500 hover:scale-105">
+            </a>
+
+            <div class="relative z-[2] flex min-w-0 flex-1 items-center justify-end">
+                <div class="user-menu flex items-center space-x-2 text-sm text-white md:space-x-3">
+                    <div class="language-selector lux-lang flex items-center space-x-2 text-white">
+                        <i class="fas fa-globe text-sm font-light opacity-80"></i>
+                        <select id="languageSelector" onchange="switchLanguage(this.value)" class="cursor-pointer border-0 bg-transparent text-sm font-light text-white outline-none">
+                            <option value="fr" class="bg-gray-900 text-white">FR</option>
+                            <option value="en" class="bg-gray-900 text-white">EN</option>
+                            <option value="de" class="bg-gray-900 text-white">DE</option>
+                        </select>
+                    </div>
+
+                    @auth
+                        @if(auth()->user()->role === 'locataire')
+                            <a href="{{ route('locataire.dashboard') }}" class="nav-btn lux-nav-btn inline-flex items-center space-x-2 rounded-full px-3 py-2">
+                                <i class="fas fa-th-large text-xs opacity-90"></i>
+                                <span class="hidden sm:inline">Dashboard</span>
+                            </a>
+                        @else
+                            <a href="{{ route('reservations.index') }}" class="nav-btn lux-nav-btn inline-flex items-center space-x-2 rounded-full px-3 py-2">
+                                <i class="fas fa-calendar-check text-xs opacity-90"></i>
+                                <span class="hidden sm:inline">Réservations</span>
+                            </a>
+                        @endif
+                        <form action="{{ route('logout') }}" method="POST" class="inline">
+                            @csrf
+                            <button type="submit" class="nav-btn lux-nav-btn inline-flex items-center space-x-2 rounded-full px-3 py-2">
+                                <i class="fas fa-sign-out-alt text-xs opacity-90"></i>
+                                <span class="hidden sm:inline">Déconnexion</span>
+                            </button>
+                        </form>
+                    @else
+                        <div class="nav-dropdown">
+                            <button type="button" class="nav-btn lux-nav-btn nav-dropdown-trigger inline-flex items-center space-x-2 rounded-full px-3 py-2 text-white" id="loginDropdownBtn">
+                                <i class="fas fa-user text-xs opacity-90"></i>
+                                <span class="hidden sm:inline">Se connecter</span>
+                                <i class="fas fa-chevron-down text-[10px] opacity-70"></i>
+                            </button>
+                            <div class="nav-dropdown-menu" id="loginDropdownMenu">
+                                <a href="{{ route('login') }}" class="nav-dropdown-item">
+                                    <div class="nav-dropdown-icon">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    <div class="nav-dropdown-content">
+                                        <span class="nav-dropdown-title">Espace Voyageur</span>
+                                        <span class="nav-dropdown-desc">Réservez votre prochain séjour</span>
+                                    </div>
+                                </a>
+                                <a href="{{ route('locataire.login.form') }}" class="nav-dropdown-item">
+                                    <div class="nav-dropdown-icon loueur">
+                                        <i class="fas fa-home"></i>
+                                    </div>
+                                    <div class="nav-dropdown-content">
+                                        <span class="nav-dropdown-title">Espace Loueur</span>
+                                        <span class="nav-dropdown-desc">Gérez vos propriétés</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <a href="/demande-location" class="inline-flex items-center justify-center rounded-full border border-yellow-600 bg-gray-950 px-4 py-2 text-xs font-light text-white transition-colors hover:bg-yellow-600 sm:px-6 sm:text-sm">
+                            Nous rejoindre
+                        </a>
+                    @endauth
+
+                    <button type="button" class="nav-menu-btn lux-burger inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full lg:hidden" id="navMenuBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileMenu">
+                        <i class="fas fa-bars text-sm"></i>
+                    </button>
+                </div>
+            </div>
         </div>
     </header>
-    
-    <!-- Mobile Menu -->
+
     <nav id="mobileMenu" class="mobile-menu" aria-hidden="true">
         <div class="mobile-menu-overlay"></div>
         <div class="mobile-menu-panel">
             <div class="mobile-menu-header">
-                <a href="{{ url('/') }}" class="mobile-menu-logo" title="Accueil">
-                    <img src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" class="site-logo-img" style="height:2rem;max-height:40px;width:auto;object-fit:contain;">
+                <a href="{{ url('/') }}" class="inline-flex items-center justify-center" title="Accueil">
+                    <img src="{{ asset('images/logo.png') }}" alt="Casa Del Concierge" width="240" height="96" loading="eager" decoding="async" class="h-12 md:h-16 lg:h-20 w-auto object-contain transition-transform duration-500 hover:scale-105">
                 </a>
-                <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Fermer le menu">
+                <button type="button" class="mobile-menu-close" id="mobileMenuClose" aria-label="Fermer le menu">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
@@ -2205,6 +2063,7 @@
                 <a href="{{ route('houses.index') }}" class="mobile-menu-link">Propriétés</a>
                 <a href="#about" class="mobile-menu-link">Pourquoi nous</a>
                 <a href="#services" class="mobile-menu-link">Services</a>
+                <a href="#contact" class="mobile-menu-link">Contact</a>
                 <a href="#how-it-works" class="mobile-menu-link">Comment ça marche</a>
             </div>
             <div class="mobile-menu-footer">
@@ -2212,6 +2071,9 @@
                     <a href="{{ route('login') }}" class="mobile-menu-cta">
                         <i class="fas fa-user-circle"></i>
                         <span>Connexion</span>
+                    </a>
+                    <a href="/demande-location" class="mt-4 flex w-full items-center justify-center rounded-full border border-yellow-600 bg-transparent py-2.5 text-sm font-light text-white transition-colors hover:bg-yellow-600">
+                        Nous rejoindre
                     </a>
                 @endguest
                 @auth
@@ -5722,7 +5584,7 @@
         <div class="container">
             <div class="footer-brand">
                 <a href="{{ url('/') }}" title="Casa Del Concierge — Accueil">
-                    <img src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" class="footer-logo-img" width="200" height="64" loading="lazy" decoding="async">
+                    <img src="{{ asset('images/logo.png') }}" alt="Casa Del Concierge" width="240" height="96" loading="lazy" decoding="async" class="h-16 w-auto object-contain transition-opacity duration-300 hover:opacity-90 md:h-20">
                 </a>
             </div>
             <div class="footer-content">
@@ -5783,6 +5645,7 @@
                     mobileMenu.setAttribute('aria-hidden', 'false');
                     document.body.style.overflow = 'hidden';
                 }
+                navMenuBtn?.setAttribute('aria-expanded', 'true');
             }
             
             function closeMobileMenu() {
@@ -5791,6 +5654,7 @@
                     mobileMenu.setAttribute('aria-hidden', 'true');
                     document.body.style.overflow = '';
                 }
+                navMenuBtn?.setAttribute('aria-expanded', 'false');
             }
             
             navMenuBtn?.addEventListener('click', openMobileMenu);

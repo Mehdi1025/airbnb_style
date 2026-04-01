@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expériences Inoubliables • Casa Del Concierge</title>
-    <link rel="icon" href="{{ asset('images/logo.jpeg') }}" type="image/jpeg">
-    <link rel="apple-touch-icon" href="{{ asset('images/logo.jpeg') }}">
+    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png">
+    <link rel="apple-touch-icon" href="{{ asset('images/logo.png') }}">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -138,7 +138,7 @@
 
     <nav class="fixed top-0 w-full p-8 flex justify-between items-center z-40 mix-blend-difference">
         <a href="{{ route('welcome') }}" class="hover-trigger inline-block leading-none" title="Casa Del Concierge — Accueil">
-            <img src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" class="h-10 w-auto max-h-[40px] object-contain">
+            <img src="{{ asset('images/logo.png') }}" alt="Casa Del Concierge" class="h-10 w-auto max-h-[40px] object-contain">
         </a>
         <a href="{{ route('welcome') }}" class="text-xs uppercase tracking-[0.2em] border border-white/20 px-6 py-2 rounded-full hover:bg-white hover:text-black transition-all hover-trigger">Fermer</a>
     </nav>

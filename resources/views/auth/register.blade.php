@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Inscription - Casa Del Concierge</title>
-    <link rel="icon" href="{{ asset('images/logo.jpeg') }}" type="image/jpeg">
-    <link rel="apple-touch-icon" href="{{ asset('images/logo.jpeg') }}">
+    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png">
+    <link rel="apple-touch-icon" href="{{ asset('images/logo.png') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cereal:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -252,7 +252,7 @@
             <div class="auth-form">
                 <div class="auth-logo">
                     <a href="{{ url('/') }}" title="Casa Del Concierge — Accueil">
-                        <img src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" width="200" height="56" loading="eager" decoding="async">
+                        <img src="{{ asset('images/logo.png') }}" alt="Casa Del Concierge" width="200" height="56" loading="eager" decoding="async">
                     </a>
                 </div>
                 <h1 class="auth-title">Créez votre compte</h1>

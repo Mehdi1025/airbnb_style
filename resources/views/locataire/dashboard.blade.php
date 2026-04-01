@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Dashboard Locataire | Casa Del Concierge</title>
-    <link rel="icon" href="{{ asset('images/logo.jpeg') }}" type="image/jpeg">
-    <link rel="apple-touch-icon" href="{{ asset('images/logo.jpeg') }}">
+    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png">
+    <link rel="apple-touch-icon" href="{{ asset('images/logo.png') }}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <!-- ApexCharts -->
@@ -1248,7 +1248,7 @@
     <aside class="sidebar">
         <div class="brand">
             <a href="{{ url('/') }}" title="Casa Del Concierge — Accueil">
-                <img src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" class="brand-logo-img" width="180" height="48" loading="eager" decoding="async">
+                <img src="{{ asset('images/logo.png') }}" alt="Casa Del Concierge" class="brand-logo-img" width="180" height="48" loading="eager" decoding="async">
             </a>
         </div>
         <nav class="nav-menu">

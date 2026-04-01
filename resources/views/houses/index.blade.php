@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Nos Biens - Découvrez nos propriétés exceptionnelles</title>
-    <link rel="icon" href="{{ asset('images/logo.jpeg') }}" type="image/jpeg">
-    <link rel="apple-touch-icon" href="{{ asset('images/logo.jpeg') }}">
+    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png">
+    <link rel="apple-touch-icon" href="{{ asset('images/logo.png') }}">
     
     <!-- Airbnb-like Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -792,7 +792,7 @@
     <!-- Header identique à la page d'accueil -->
     <header id="header">
         <a href="{{ route('welcome') }}" class="logo" title="Casa Del Concierge — Accueil">
-            <img src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" width="180" height="48" loading="eager" decoding="async">
+            <img src="{{ asset('images/logo.png') }}" alt="Casa Del Concierge" width="180" height="48" loading="eager" decoding="async">
         </a>
         <a href="{{ route('welcome') }}" class="back-link">
             <i class="fas fa-arrow-left"></i>

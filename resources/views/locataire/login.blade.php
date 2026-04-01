@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion Locataire - Casa Del Concierge</title>
-    <link rel="icon" href="{{ asset('images/logo.jpeg') }}" type="image/jpeg">
-    <link rel="apple-touch-icon" href="{{ asset('images/logo.jpeg') }}">
+    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png">
+    <link rel="apple-touch-icon" href="{{ asset('images/logo.png') }}">
     
     <!-- Airbnb-like Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -298,7 +298,7 @@
         <div class="login-card">
             <div class="login-header">
                 <a href="{{ url('/') }}" class="login-logo" title="Casa Del Concierge — Accueil">
-                    <img src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" width="200" height="56" loading="eager" decoding="async">
+                    <img src="{{ asset('images/logo.png') }}" alt="Casa Del Concierge" width="200" height="56" loading="eager" decoding="async">
                 </a>
                 <h1 class="login-title">Connexion Locataire</h1>
                 <p class="login-subtitle">Accédez à votre espace de gestion</p>

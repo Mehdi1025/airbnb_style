@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Connexion Admin</title>
-    <link rel="icon" href="{{ asset('images/logo.jpeg') }}" type="image/jpeg">
-    <link rel="apple-touch-icon" href="{{ asset('images/logo.jpeg') }}">
+    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png">
+    <link rel="apple-touch-icon" href="{{ asset('images/logo.png') }}">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -97,7 +97,7 @@
     <div class="login-container">
         <div class="admin-login-logo">
             <a href="{{ url('/') }}" title="Casa Del Concierge — Accueil">
-                <img src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" width="200" height="56" loading="eager" decoding="async">
+                <img src="{{ asset('images/logo.png') }}" alt="Casa Del Concierge" width="200" height="56" loading="eager" decoding="async">
             </a>
         </div>
         <h1>Connexion administrateur</h1>

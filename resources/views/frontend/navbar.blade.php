@@ -1,17 +1,17 @@
 <div class="navbar-area">
     <!-- Menu For Mobile Device -->
     <div class="mobile-nav">
-        <a href="{{ url('/') }}" class="logo">
-            <img src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" style="height:2.5rem;max-height:40px;width:auto;object-fit:contain;">
+        <a href="{{ url('/') }}" class="logo inline-flex items-center">
+            <img src="{{ asset('images/logo.png') }}" alt="Casa Del Concierge" width="240" height="96" loading="eager" decoding="async" class="h-12 md:h-16 lg:h-20 w-auto object-contain transition-transform duration-500 hover:scale-105">
         </a>
     </div>
 
     <!-- Menu For Desktop Device -->
     <div class="main-nav">
-        <div class="container">
-            <nav class="navbar navbar-expand-md navbar-light">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" style="height:2.75rem;max-height:44px;width:auto;object-fit:contain;">
+        <div class="container py-6 md:py-8">
+            <nav class="navbar navbar-expand-md navbar-light align-items-center py-0">
+                <a class="navbar-brand inline-flex items-center m-0 p-0 leading-none" href="{{ url('/') }}">
+                    <img src="{{ asset('images/logo.png') }}" alt="Casa Del Concierge" width="240" height="96" loading="eager" decoding="async" class="h-12 md:h-16 lg:h-20 w-auto object-contain transition-transform duration-500 hover:scale-105">
                 </a>
 
                 <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">

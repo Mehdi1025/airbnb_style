@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Statistiques - Casa Del Concierge</title>
-    <link rel="icon" href="{{ asset('images/logo.jpeg') }}" type="image/jpeg">
-    <link rel="apple-touch-icon" href="{{ asset('images/logo.jpeg') }}">
+    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png">
+    <link rel="apple-touch-icon" href="{{ asset('images/logo.png') }}">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
     <style>
@@ -595,7 +595,7 @@
             <div class="header-content">
                 <div class="logo">
                     <a href="{{ url('/') }}" class="logo-mark" title="Casa Del Concierge — Accueil">
-                        <img src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" width="180" height="56" loading="eager" decoding="async">
+                        <img src="{{ asset('images/logo.png') }}" alt="Casa Del Concierge" width="180" height="56" loading="eager" decoding="async">
                     </a>
                     <div class="logo-text">
                         <h1>Tableau de Bord Analytique</h1>

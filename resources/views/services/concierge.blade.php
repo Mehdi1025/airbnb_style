@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>L'Art de la Pureté • Nettoyage Premium | Casa Del Concierge</title>
-    <link rel="icon" href="{{ asset('images/logo.jpeg') }}" type="image/jpeg">
-    <link rel="apple-touch-icon" href="{{ asset('images/logo.jpeg') }}">
+    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png">
+    <link rel="apple-touch-icon" href="{{ asset('images/logo.png') }}">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -253,7 +253,7 @@
 
     <nav style="position: fixed; top: 0; width: 100%; padding: 30px 50px; display: flex; justify-content: space-between; align-items: center; z-index: 50; mix-blend-mode: difference; color: white;">
         <a href="{{ route('welcome') }}" style="text-decoration: none; color: inherit; line-height: 0; display: inline-block;" class="hover-trigger" title="Casa Del Concierge — Accueil">
-            <img src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" style="height:2.5rem;max-height:40px;width:auto;object-fit:contain;">
+            <img src="{{ asset('images/logo.png') }}" alt="Casa Del Concierge" style="height:2.5rem;max-height:40px;width:auto;object-fit:contain;">
         </a>
         <a href="{{ route('welcome') }}" style="font-weight: 600; text-decoration: none; color: inherit; font-size: 14px;" class="hover-trigger">FERMER</a>
     </nav>
