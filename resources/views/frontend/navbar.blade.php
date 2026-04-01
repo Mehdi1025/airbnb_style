@@ -2,16 +2,16 @@
     <!-- Menu For Mobile Device -->
     <div class="mobile-nav">
         <a href="{{ url('/') }}" class="logo inline-flex items-center">
-            <img src="{{ asset('images/logo.png') }}" alt="Casa Del Concierge" width="240" height="96" loading="eager" decoding="async" class="h-12 md:h-16 lg:h-20 w-auto object-contain transition-transform duration-500 hover:scale-105">
+            <img src="{{ asset('images/logo.png') }}" alt="Casa Del Concierge" width="200" height="80" loading="eager" decoding="async" class="h-10 md:h-12 w-auto object-contain">
         </a>
     </div>
 
     <!-- Menu For Desktop Device -->
     <div class="main-nav">
-        <div class="container py-6 md:py-8">
+        <div class="container px-6 py-4 md:px-10 md:py-5">
             <nav class="navbar navbar-expand-md navbar-light align-items-center py-0">
                 <a class="navbar-brand inline-flex items-center m-0 p-0 leading-none" href="{{ url('/') }}">
-                    <img src="{{ asset('images/logo.png') }}" alt="Casa Del Concierge" width="240" height="96" loading="eager" decoding="async" class="h-12 md:h-16 lg:h-20 w-auto object-contain transition-transform duration-500 hover:scale-105">
+                    <img src="{{ asset('images/logo.png') }}" alt="Casa Del Concierge" width="200" height="80" loading="eager" decoding="async" class="h-10 md:h-12 w-auto object-contain">
                 </a>
 
                 <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
