@@ -44,6 +44,14 @@
     <!-- Navigation Enhancements -->
     <link rel="stylesheet" href="{{ asset('css/navigation-enhancements.css') }}">
     
+    <!-- Tailwind (navbar only — preflight off to preserve design system) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            corePlugins: { preflight: false },
+        };
+    </script>
+    
     <!-- Lightbox CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
     
@@ -838,95 +846,69 @@
         }
         
         /* ============================================
-           HEADER - Clean Light Design
+           HEADER — shell + scroll (layout = Tailwind sur #mainHeader)
            ============================================ */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 80px;
-            padding: 0 48px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-            z-index: 1000;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        #mainHeader.scrolled {
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.06);
         }
         
-        header.scrolled {
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.04);
+        #mainHeader .premium-nav-shell {
+            transition: padding 0.5s cubic-bezier(0.22, 1, 0.36, 1);
         }
         
-        /* Logo */
-        .logo {
-            color: var(--neutral-900);
-            font-size: 20px;
-            font-weight: 700;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            letter-spacing: -0.02em;
-            transition: all 0.3s ease;
+        #mainHeader.scrolled .premium-nav-shell {
+            padding-top: 0.875rem;
+            padding-bottom: 0.875rem;
         }
         
-        .logo:hover {
-            opacity: 0.85;
-        }
-        
-        .logo img.site-logo-img {
-            height: 2.5rem;
-            width: auto;
-            max-height: 48px;
-            object-fit: contain;
-            display: block;
-        }
-        
-        @media (max-width: 768px) {
-            .logo img.site-logo-img {
-                height: 2rem;
-                max-height: 40px;
+        @media (min-width: 640px) {
+            #mainHeader.scrolled .premium-nav-shell {
+                padding-top: 1rem;
+                padding-bottom: 1rem;
             }
         }
         
-        /* Center Navigation */
-        .nav-center {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            padding: 4px;
-            background: var(--neutral-100);
-            border-radius: 50px;
-            transition: all 0.3s ease;
+        @media (min-width: 1024px) {
+            #mainHeader.scrolled .premium-nav-shell {
+                padding-top: 1.125rem;
+                padding-bottom: 1.125rem;
+            }
         }
         
-        .nav-center-link {
-            padding: 10px 20px;
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--neutral-600);
-            text-decoration: none;
-            border-radius: 40px;
-            transition: all 0.25s ease;
+        /* Logo height transition + scroll shrink (overrides Tailwind utilities) */
+        #navLogoImg {
+            transition: height 0.5s cubic-bezier(0.22, 1, 0.36, 1), max-height 0.5s cubic-bezier(0.22, 1, 0.36, 1);
         }
         
-        .nav-center-link:hover {
-            color: var(--neutral-900);
+        #navLogoImg.nav-logo--scrolled {
+            height: 2.5rem !important;
+            max-height: 2.5rem !important;
         }
         
-        .nav-center-link.active {
-            color: var(--neutral-900);
-            background: #fff;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        @media (min-width: 768px) {
+            #navLogoImg.nav-logo--scrolled {
+                height: 3rem !important;
+                max-height: 3rem !important;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            #navLogoImg.nav-logo--scrolled {
+                height: 3.5rem !important;
+                max-height: 3.5rem !important;
+            }
+        }
+        
+        @media (min-width: 1280px) {
+            #navLogoImg.nav-logo--scrolled {
+                height: 4rem !important;
+                max-height: 4rem !important;
+            }
+        }
+        
+        #mainHeader.scrolled .premium-nav-logo-inner {
+            padding: 0.375rem;
+            border-radius: 0.625rem;
         }
         
         /* User menu */
@@ -1003,16 +985,15 @@
             appearance: none;
         }
         
-        /* Menu button */
+        /* Menu button (visibility: Tailwind lg:hidden sur l’élément) */
         .nav-menu-btn {
-            display: none;
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             align-items: center;
             justify-content: center;
             background: var(--neutral-100);
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             color: var(--neutral-700);
             cursor: pointer;
             transition: all 0.25s ease;
@@ -1133,27 +1114,7 @@
         }
         
         /* Responsive Header */
-        @media (max-width: 1100px) {
-            .nav-center {
-                display: none;
-            }
-            
-            .nav-menu-btn {
-                display: flex;
-            }
-        }
-        
         @media (max-width: 768px) {
-            header {
-                padding: 0 20px;
-                height: 64px;
-            }
-            
-            .logo img.site-logo-img {
-                height: 1.875rem;
-                max-height: 36px;
-            }
-            
             .user-menu {
                 gap: 6px;
             }
@@ -2101,23 +2062,34 @@
     <!-- Scroll Indicator -->
     <div class="scroll-indicator" id="scrollIndicator"></div>
     
-    <!-- Header - Cinematic Style -->
-    <header id="mainHeader">
-        <!-- Logo -->
-        <a href="{{ url('/') }}" class="logo" title="Casa Del Concierge — Accueil">
-            <img src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" class="site-logo-img" width="180" height="48" loading="eager" decoding="async">
-        </a>
-        
-        <!-- Center Navigation -->
-        <nav class="nav-center">
-            <a href="{{ route('houses.index') }}" class="nav-center-link active">Propriétés</a>
-            <a href="#about" class="nav-center-link">Pourquoi nous</a>
-            <a href="#services" class="nav-center-link">Services</a>
-            <a href="#contact" class="nav-center-link">Contact</a>
-        </nav>
-        
-        <!-- Right Menu -->
-        <div class="user-menu">
+    <!-- Header — premium navbar (Tailwind) -->
+    <header id="mainHeader" class="fixed top-0 left-0 right-0 z-[1000] border-b border-neutral-200/60 bg-white/80 backdrop-blur-2xl transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] supports-[backdrop-filter]:bg-white/[0.72]">
+        <div class="premium-nav-shell mx-auto w-full max-w-[1920px] px-4 py-6 sm:px-6 sm:py-7 md:px-10 md:py-8 lg:px-14 lg:py-8 xl:px-20">
+            <div class="relative flex min-h-[4.25rem] items-center sm:min-h-[4.5rem] lg:grid lg:min-h-[5.25rem] lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] lg:items-center lg:gap-8 xl:min-h-[5.75rem] xl:gap-10">
+                <!-- Mobile: balance gauche pour centrer le logo -->
+                <div class="w-9 shrink-0 sm:w-10 lg:hidden" aria-hidden="true"></div>
+
+                <!-- Desktop : liens alignés à droite de la colonne gauche (symétrie luxe) -->
+                <nav class="relative z-10 hidden min-w-0 items-center justify-end lg:flex" aria-label="Navigation principale">
+                    <div class="inline-flex items-center gap-0.5 rounded-full border border-neutral-200/70 bg-neutral-100/95 p-1 shadow-[0_1px_0_rgba(255,255,255,0.85)_inset,0_4px_24px_rgba(0,0,0,0.05)]">
+                        @php $housesActive = request()->routeIs('houses.index') || request()->routeIs('houses.show'); @endphp
+                        <a href="{{ route('houses.index') }}" class="rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300 {{ $housesActive ? 'bg-white text-neutral-900 shadow-[0_2px_14px_rgba(0,0,0,0.08)] ring-1 ring-black/[0.04]' : 'text-neutral-600 hover:text-neutral-900' }}">Propriétés</a>
+                        <a href="#about" class="rounded-full px-5 py-2.5 text-sm font-medium text-neutral-600 transition-colors duration-300 hover:text-neutral-900">Pourquoi nous</a>
+                        <a href="#services" class="rounded-full px-5 py-2.5 text-sm font-medium text-neutral-600 transition-colors duration-300 hover:text-neutral-900">Services</a>
+                        <a href="#contact" class="rounded-full px-5 py-2.5 text-sm font-medium text-neutral-600 transition-colors duration-300 hover:text-neutral-900">Contact</a>
+                    </div>
+                </nav>
+
+                <!-- Logo : centré mobile, colonne centrale desktop -->
+                <a href="{{ url('/') }}" class="absolute left-1/2 top-1/2 z-[1] flex -translate-x-1/2 -translate-y-1/2 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900/20 focus-visible:ring-offset-2 lg:relative lg:col-start-2 lg:row-start-1 lg:left-auto lg:top-auto lg:z-auto lg:translate-x-0 lg:translate-y-0" title="Casa Del Concierge — Accueil">
+                    <span class="premium-nav-logo-inner inline-flex items-center justify-center rounded-xl bg-white p-2 shadow-sm ring-1 ring-neutral-900/[0.07] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] mix-blend-multiply">
+                        <img id="navLogoImg" src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" width="320" height="128" loading="eager" decoding="async" class="h-12 w-auto max-w-[min(78vw,20rem)] object-contain transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] sm:h-12 md:h-16 lg:h-20 xl:h-24">
+                    </span>
+                </a>
+
+                <!-- Actions -->
+                <div class="relative z-[2] flex min-w-0 flex-1 items-center justify-end gap-1 sm:gap-2 lg:col-start-3 lg:flex-none lg:justify-start lg:pl-4 xl:pl-10">
+                    <div class="user-menu">
             <div class="language-selector">
                 <i class="fas fa-globe"></i>
                 <select id="languageSelector" onchange="switchLanguage(this.value)">
@@ -2183,9 +2155,12 @@
             @endauth
             
             <!-- Mobile menu button -->
-            <button class="nav-menu-btn" id="navMenuBtn">
+            <button type="button" class="nav-menu-btn inline-flex lg:hidden" id="navMenuBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileMenu">
                 <i class="fas fa-bars"></i>
             </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
     
@@ -2194,8 +2169,8 @@
         <div class="mobile-menu-overlay"></div>
         <div class="mobile-menu-panel">
             <div class="mobile-menu-header">
-                <a href="{{ url('/') }}" class="mobile-menu-logo" title="Accueil">
-                    <img src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" class="site-logo-img" style="height:2rem;max-height:40px;width:auto;object-fit:contain;">
+                <a href="{{ url('/') }}" class="mobile-menu-logo inline-flex items-center justify-center rounded-xl bg-white p-2.5 shadow-sm ring-1 ring-neutral-900/[0.06] mix-blend-multiply" title="Accueil">
+                    <img src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" class="h-14 w-auto max-w-[min(85vw,16rem)] object-contain sm:h-16" width="260" height="104" loading="eager" decoding="async">
                 </a>
                 <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Fermer le menu">
                     <i class="fas fa-times"></i>
@@ -5766,6 +5741,7 @@
         // Script pour les interactions utilisateur améliorées
         document.addEventListener('DOMContentLoaded', function() {
             const header = document.getElementById('mainHeader');
+            const navLogoImg = document.getElementById('navLogoImg');
             const scrollIndicator = document.getElementById('scrollIndicator');
             const scrollDown = document.querySelector('.scroll-down');
             
@@ -5782,6 +5758,7 @@
                     mobileMenu.classList.add('active');
                     mobileMenu.setAttribute('aria-hidden', 'false');
                     document.body.style.overflow = 'hidden';
+                    navMenuBtn?.setAttribute('aria-expanded', 'true');
                 }
             }
             
@@ -5790,6 +5767,7 @@
                     mobileMenu.classList.remove('active');
                     mobileMenu.setAttribute('aria-hidden', 'true');
                     document.body.style.overflow = '';
+                    navMenuBtn?.setAttribute('aria-expanded', 'false');
                 }
             }
             
@@ -5920,19 +5898,27 @@
             // HEADER & SCROLL EFFECTS
             // ============================================
             
-            // Effet de scroll sur le header
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 50) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
+            // Effet de scroll sur le header + réduction douce du logo
+            function updateHeaderScrollState() {
+                const scrolled = window.scrollY > 50;
+                if (header) {
+                    header.classList.toggle('scrolled', scrolled);
                 }
+                if (navLogoImg) {
+                    navLogoImg.classList.toggle('nav-logo--scrolled', scrolled);
+                }
+            }
+            window.addEventListener('scroll', function() {
+                updateHeaderScrollState();
                 
                 // Scroll indicator
-                const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-                const scrolled = (window.scrollY / windowHeight) * 100;
-                scrollIndicator.style.width = scrolled + '%';
+                if (scrollIndicator) {
+                    const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                    const pct = (window.scrollY / windowHeight) * 100;
+                    scrollIndicator.style.width = pct + '%';
+                }
             });
+            updateHeaderScrollState();
             
             // Scroll down smooth
             if (scrollDown) {
