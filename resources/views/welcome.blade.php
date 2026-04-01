@@ -845,8 +845,9 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 80px;
-            padding: 0 2.5rem;
+            min-height: 80px;
+            height: auto;
+            padding: 0.5rem 2rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -886,8 +887,9 @@
             opacity: 0.9;
         }
         
+        /* Équivalent Tailwind: h-12 md:h-16 lg:h-20 */
         .logo img.site-logo-img {
-            height: 2.5rem;
+            height: 3rem;
             width: auto;
             object-fit: contain;
             object-position: left center;
@@ -901,7 +903,21 @@
         
         @media (min-width: 768px) {
             .logo img.site-logo-img {
-                height: 3rem;
+                height: 4rem;
+            }
+            header {
+                min-height: 88px;
+                padding: 0.5rem 2rem;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .logo img.site-logo-img {
+                height: 5rem;
+            }
+            header {
+                min-height: 104px;
+                padding: 0.625rem 2.5rem;
             }
         }
         
@@ -1155,8 +1171,8 @@
         
         @media (max-width: 768px) {
             header {
-                padding: 0 1.5rem;
-                height: 64px;
+                padding: 0.5rem 2rem;
+                min-height: 72px;
             }
             
             .user-menu {
@@ -2093,7 +2109,7 @@
             line-height: 0;
         }
         .mobile-menu-logo img.site-logo-img--drawer {
-            height: 2.5rem;
+            height: 3rem;
             width: auto;
             object-fit: contain;
             object-position: left center;
@@ -2105,7 +2121,12 @@
         }
         @media (min-width: 768px) {
             .mobile-menu-logo img.site-logo-img--drawer {
-                height: 3rem;
+                height: 4rem;
+            }
+        }
+        @media (min-width: 1024px) {
+            .mobile-menu-logo img.site-logo-img--drawer {
+                height: 5rem;
             }
         }
         .mobile-menu-link {
@@ -6974,8 +6995,8 @@
                     if (targetElement) {
                         e.preventDefault();
                         
-                        // Calculer la position avec offset pour le header fixe (80px)
-                        const headerHeight = 80;
+                        // Offset = hauteur réelle du header (logo plus grand sur lg)
+                        const headerHeight = header ? header.offsetHeight : 104;
                         const targetPosition = targetElement.offsetTop - headerHeight;
                         
                         window.scrollTo({
