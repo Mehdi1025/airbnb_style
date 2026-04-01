@@ -44,11 +44,6 @@
     <!-- Navigation Enhancements -->
     <link rel="stylesheet" href="{{ asset('css/navigation-enhancements.css') }}">
     
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = { corePlugins: { preflight: false } };
-    </script>
-    
     <!-- Lightbox CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
     
@@ -843,28 +838,115 @@
         }
         
         /* ============================================
-           HEADER — barre blanche, logo PNG transparent à gauche
+           HEADER - Clean Light Design
            ============================================ */
-        #mainHeader.welcome-header.scrolled {
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            padding: 0 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            z-index: 1000;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        #mainHeader.welcome-header .language-selector:hover {
-            background: var(--neutral-50);
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.04);
         }
         
-        #mainHeader.welcome-header .nav-menu-btn.welcome-burger:hover {
-            background: var(--neutral-50);
-            border-color: var(--neutral-300);
+        /* Logo (PNG transparent — sans bordure, ombre ni fond) */
+        .logo {
+            color: var(--neutral-900);
+            font-size: 20px;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+            gap: 0;
+            letter-spacing: -0.02em;
+            transition: opacity 0.3s ease;
+            border: none;
+            outline: none;
+            box-shadow: none;
+            background: transparent;
         }
         
+        .logo:hover {
+            opacity: 0.9;
+        }
+        
+        .logo img.site-logo-img {
+            height: 2.5rem;
+            width: auto;
+            object-fit: contain;
+            object-position: left center;
+            display: block;
+            border: none;
+            outline: none;
+            box-shadow: none;
+            background: transparent;
+            vertical-align: middle;
+        }
+        
+        @media (min-width: 768px) {
+            .logo img.site-logo-img {
+                height: 3rem;
+            }
+        }
+        
+        /* Center Navigation */
+        .nav-center {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px;
+            background: var(--neutral-100);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-center-link {
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--neutral-600);
+            text-decoration: none;
+            border-radius: 40px;
+            transition: all 0.25s ease;
+        }
+        
+        .nav-center-link:hover {
+            color: var(--neutral-900);
+        }
+        
+        .nav-center-link.active {
+            color: var(--neutral-900);
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* User menu */
         .user-menu {
             display: flex;
             align-items: center;
             gap: 8px;
         }
         
-        /* Nav buttons (dropdown + actions) */
+        /* Nav buttons */
         .nav-btn {
             padding: 10px 18px;
             border-radius: 10px;
@@ -884,6 +966,70 @@
         .nav-btn:hover {
             color: var(--neutral-900);
             background: var(--neutral-100);
+        }
+        
+        /* Primary button */
+        .nav-btn.primary {
+            background: var(--neutral-900);
+            color: #fff;
+            font-weight: 600;
+            border-radius: 10px;
+        }
+        
+        .nav-btn.primary:hover {
+            background: var(--neutral-800);
+            transform: translateY(-1px);
+        }
+        
+        /* Language selector */
+        .language-selector {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            background: transparent;
+        }
+        
+        .language-selector:hover {
+            background: var(--neutral-100);
+        }
+        
+        .language-selector i {
+            font-size: 15px;
+            color: var(--neutral-500);
+        }
+        
+        .language-selector select {
+            border: none;
+            background: transparent;
+            color: var(--neutral-700);
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+            outline: none;
+            appearance: none;
+        }
+        
+        /* Menu button */
+        .nav-menu-btn {
+            display: none;
+            width: 40px;
+            height: 40px;
+            align-items: center;
+            justify-content: center;
+            background: var(--neutral-100);
+            border: none;
+            border-radius: 10px;
+            color: var(--neutral-700);
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+        
+        .nav-menu-btn:hover {
+            background: var(--neutral-200);
         }
         
         /* ============================================
@@ -996,34 +1142,60 @@
             color: var(--neutral-500);
         }
         
-        /* Responsive — barre blanche */
+        /* Responsive Header */
+        @media (max-width: 1100px) {
+            .nav-center {
+                display: none;
+            }
+            
+            .nav-menu-btn {
+                display: flex;
+            }
+        }
+        
         @media (max-width: 768px) {
+            header {
+                padding: 0 1.5rem;
+                height: 64px;
+            }
+            
             .user-menu {
                 gap: 6px;
             }
             
-            #mainHeader.welcome-header .nav-btn {
+            .nav-btn {
                 padding: 8px 12px;
                 font-size: 13px;
             }
             
-            #mainHeader.welcome-header .nav-btn span {
+            .nav-btn span {
                 display: none;
             }
             
-            #mainHeader.welcome-header .nav-dropdown-trigger span {
+            .nav-btn i {
+                display: block;
+            }
+            
+            .nav-btn.primary {
+                width: 36px;
+                height: 36px;
+                padding: 0;
+                justify-content: center;
+            }
+            
+            .nav-dropdown-trigger span {
                 display: none;
             }
             
-            #mainHeader.welcome-header .nav-dropdown-trigger i.fa-chevron-down {
+            .nav-dropdown-trigger i.fa-chevron-down {
                 display: none;
             }
             
-            #mainHeader.welcome-header .language-selector {
+            .language-selector {
                 padding: 8px;
             }
             
-            #mainHeader.welcome-header .language-selector select {
+            .language-selector select {
                 display: none;
             }
             
@@ -1562,12 +1734,30 @@
         }
         
         .footer-brand a {
-            display: inline-flex;
-            align-items: center;
+            display: inline-block;
             line-height: 0;
+            border: none;
+            box-shadow: none;
+            background: transparent;
         }
         
-        /* Logo footer : styles portés par les classes utilitaires sur <img> */
+        .footer-brand .footer-logo-img {
+            height: 3.5rem;
+            width: auto;
+            max-height: 64px;
+            object-fit: contain;
+            border: none;
+            outline: none;
+            box-shadow: none;
+            background: transparent;
+        }
+        
+        @media (max-width: 768px) {
+            .footer-brand .footer-logo-img {
+                height: 2.75rem;
+                max-height: 52px;
+            }
+        }
         
         .footer-content {
             display: grid;
@@ -1875,12 +2065,10 @@
             top: 0;
             right: 0;
             bottom: 0;
-            width: min(300px, 92vw);
-            background: #fff;
-            border-left: 1px solid var(--neutral-200);
-            box-shadow: -8px 0 32px rgba(0, 0, 0, 0.08);
+            width: 300px;
+            background: white;
             transform: translateX(100%);
-            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             flex-direction: column;
             padding: 24px;
@@ -1894,37 +2082,56 @@
             align-items: center;
             margin-bottom: 32px;
         }
+        .mobile-menu-logo {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+            border: none;
+            outline: none;
+            box-shadow: none;
+            background: transparent;
+            line-height: 0;
+        }
+        .mobile-menu-logo img.site-logo-img--drawer {
+            height: 2.5rem;
+            width: auto;
+            object-fit: contain;
+            object-position: left center;
+            border: none;
+            outline: none;
+            box-shadow: none;
+            background: transparent;
+            display: block;
+        }
+        @media (min-width: 768px) {
+            .mobile-menu-logo img.site-logo-img--drawer {
+                height: 3rem;
+            }
+        }
         .mobile-menu-link {
             display: block;
-            padding: 14px 0;
-            font-size: 15px;
+            padding: 12px 0;
+            font-size: 18px;
             font-weight: 500;
-            letter-spacing: 0.01em;
-            color: var(--neutral-800);
+            color: var(--neutral-900);
             text-decoration: none;
             border-bottom: 1px solid var(--neutral-100);
-        }
-        .mobile-menu-link:hover {
-            color: var(--neutral-950);
         }
         .mobile-menu-cta {
             display: flex;
             align-items: center;
             gap: 10px;
             margin-top: 20px;
-            color: var(--neutral-800);
-            font-weight: 500;
+            color: var(--primary);
+            font-weight: 600;
             text-decoration: none;
         }
         .mobile-menu-close {
-            background: var(--neutral-50);
-            border: 1px solid var(--neutral-200);
-            border-radius: 9999px;
-            width: 40px;
-            height: 40px;
-            font-size: 18px;
+            background: none;
+            border: none;
+            font-size: 24px;
             cursor: pointer;
-            color: var(--neutral-700);
+            color: var(--neutral-600);
         }
     </style>
 </head>
@@ -1932,104 +2139,103 @@
     <!-- Scroll Indicator -->
     <div class="scroll-indicator" id="scrollIndicator"></div>
     
-    <!-- Header — barre blanche, logo PNG transparent aligné à gauche -->
-    <header id="mainHeader" class="welcome-header fixed top-0 left-0 right-0 z-[1000] w-full border-b border-neutral-200/90 bg-white/95 backdrop-blur-md transition-all duration-300 ease-out supports-[backdrop-filter]:bg-white/90">
-        <div class="relative mx-auto flex w-full max-w-[1920px] items-center justify-between gap-4 px-6 py-4 md:px-10 md:py-5">
-            <div class="flex min-w-0 flex-1 items-center gap-8 lg:gap-10">
-                <a href="{{ url('/') }}" class="inline-flex shrink-0 items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF385C]/35 focus-visible:ring-offset-2" title="Casa Del Concierge — Accueil">
-                    <img id="navLogoImg" src="{{ asset('images/logo.png') }}" alt="Casa Del Concierge" width="200" height="80" loading="eager" decoding="async" class="h-10 md:h-12 w-auto object-contain">
-                </a>
-                <nav class="hidden min-w-0 lg:flex lg:items-center" aria-label="Navigation principale">
-                    @php $housesActive = request()->routeIs('houses.index') || request()->routeIs('houses.show'); @endphp
-                    <div class="flex items-center gap-8">
-                        <a href="{{ route('houses.index') }}" class="text-sm font-medium text-neutral-700 transition hover:text-neutral-900 {{ $housesActive ? '!text-[#FF385C]' : '' }}">Propriétés</a>
-                        <a href="#about" class="text-sm font-medium text-neutral-700 transition hover:text-neutral-900">Pourquoi nous</a>
-                        <a href="#services" class="text-sm font-medium text-neutral-700 transition hover:text-neutral-900">Services</a>
-                        <a href="#contact" class="text-sm font-medium text-neutral-700 transition hover:text-neutral-900">Contact</a>
-                    </div>
-                </nav>
+    <!-- Header - Cinematic Style -->
+    <header id="mainHeader">
+        <!-- Logo -->
+        <a href="{{ url('/') }}" class="logo" title="Casa Del Concierge — Accueil">
+            <img src="{{ asset('images/logo.png') }}" alt="Casa Del Concierge" class="site-logo-img" loading="eager" decoding="async">
+        </a>
+        
+        <!-- Center Navigation -->
+        <nav class="nav-center">
+            <a href="{{ route('houses.index') }}" class="nav-center-link active">Propriétés</a>
+            <a href="#about" class="nav-center-link">Pourquoi nous</a>
+            <a href="#services" class="nav-center-link">Services</a>
+            <a href="#contact" class="nav-center-link">Contact</a>
+        </nav>
+        
+        <!-- Right Menu -->
+        <div class="user-menu">
+            <div class="language-selector">
+                <i class="fas fa-globe"></i>
+                <select id="languageSelector" onchange="switchLanguage(this.value)">
+                    <option value="fr" selected>FR</option>
+                    <option value="en">EN</option>
+                    <option value="de">DE</option>
+                </select>
             </div>
-
-            <div class="flex shrink-0 items-center">
-                <div class="user-menu flex items-center space-x-2 text-sm text-neutral-700 md:space-x-3">
-                    <div class="language-selector flex items-center space-x-2 rounded-lg px-2 py-1 text-neutral-700">
-                        <i class="fas fa-globe text-sm text-neutral-500"></i>
-                        <select id="languageSelector" onchange="switchLanguage(this.value)" class="cursor-pointer border-0 bg-transparent text-sm font-medium text-neutral-700 outline-none">
-                            <option value="fr" class="bg-white text-neutral-900">FR</option>
-                            <option value="en" class="bg-white text-neutral-900">EN</option>
-                            <option value="de" class="bg-white text-neutral-900">DE</option>
-                        </select>
-                    </div>
-
-                    @auth
-                        @if(auth()->user()->role === 'locataire')
-                            <a href="{{ route('locataire.dashboard') }}" class="nav-btn inline-flex items-center space-x-2 rounded-full px-3 py-2">
-                                <i class="fas fa-th-large text-xs text-neutral-600"></i>
-                                <span class="hidden sm:inline">Dashboard</span>
-                            </a>
-                        @else
-                            <a href="{{ route('reservations.index') }}" class="nav-btn inline-flex items-center space-x-2 rounded-full px-3 py-2">
-                                <i class="fas fa-calendar-check text-xs text-neutral-600"></i>
-                                <span class="hidden sm:inline">Réservations</span>
-                            </a>
-                        @endif
-                        <form action="{{ route('logout') }}" method="POST" class="inline">
-                            @csrf
-                            <button type="submit" class="nav-btn inline-flex items-center space-x-2 rounded-full px-3 py-2">
-                                <i class="fas fa-sign-out-alt text-xs text-neutral-600"></i>
-                                <span class="hidden sm:inline">Déconnexion</span>
-                            </button>
-                        </form>
-                    @else
-                        <div class="nav-dropdown">
-                            <button type="button" class="nav-btn nav-dropdown-trigger inline-flex items-center space-x-2 rounded-full px-3 py-2 text-neutral-800" id="loginDropdownBtn">
-                                <i class="fas fa-user text-xs text-neutral-600"></i>
-                                <span class="hidden sm:inline">Se connecter</span>
-                                <i class="fas fa-chevron-down text-[10px] text-neutral-500"></i>
-                            </button>
-                            <div class="nav-dropdown-menu" id="loginDropdownMenu">
-                                <a href="{{ route('login') }}" class="nav-dropdown-item">
-                                    <div class="nav-dropdown-icon">
-                                        <i class="fas fa-user"></i>
-                                    </div>
-                                    <div class="nav-dropdown-content">
-                                        <span class="nav-dropdown-title">Espace Voyageur</span>
-                                        <span class="nav-dropdown-desc">Réservez votre prochain séjour</span>
-                                    </div>
-                                </a>
-                                <a href="{{ route('locataire.login.form') }}" class="nav-dropdown-item">
-                                    <div class="nav-dropdown-icon loueur">
-                                        <i class="fas fa-home"></i>
-                                    </div>
-                                    <div class="nav-dropdown-content">
-                                        <span class="nav-dropdown-title">Espace Loueur</span>
-                                        <span class="nav-dropdown-desc">Gérez vos propriétés</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-                        <a href="/demande-location" class="hidden sm:inline-flex items-center justify-center rounded-full border border-yellow-600 bg-white px-4 py-2 text-xs font-medium text-neutral-800 transition-colors hover:bg-yellow-600 hover:text-white md:px-6 md:text-sm">
-                            Nous rejoindre
-                        </a>
-                    @endauth
-
-                    <button type="button" class="nav-menu-btn welcome-burger inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-800 lg:hidden" id="navMenuBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileMenu">
-                        <i class="fas fa-bars text-sm"></i>
+            
+            @auth
+                @if(auth()->user()->role === 'locataire')
+                    <a href="{{ route('locataire.dashboard') }}" class="nav-btn">
+                        <i class="fas fa-th-large"></i>
+                        <span>Dashboard</span>
+                    </a>
+                @else
+                    <a href="{{ route('reservations.index') }}" class="nav-btn">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Réservations</span>
+                    </a>
+                @endif
+                <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                    @csrf
+                    <button type="submit" class="nav-btn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Déconnexion</span>
                     </button>
+                </form>
+            @else
+                <!-- Dropdown Connexion -->
+                <div class="nav-dropdown">
+                    <button class="nav-btn nav-dropdown-trigger" id="loginDropdownBtn">
+                        <span>Se connecter</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="nav-dropdown-menu" id="loginDropdownMenu">
+                        <a href="{{ route('login') }}" class="nav-dropdown-item">
+                            <div class="nav-dropdown-icon">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="nav-dropdown-content">
+                                <span class="nav-dropdown-title">Espace Voyageur</span>
+                                <span class="nav-dropdown-desc">Réservez votre prochain séjour</span>
+                            </div>
+                        </a>
+                        <a href="{{ route('locataire.login.form') }}" class="nav-dropdown-item">
+                            <div class="nav-dropdown-icon loueur">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <div class="nav-dropdown-content">
+                                <span class="nav-dropdown-title">Espace Loueur</span>
+                                <span class="nav-dropdown-desc">Gérez vos propriétés</span>
+                            </div>
+                        </a>
+                    </div>
                 </div>
-            </div>
+                
+                <!-- Bouton Nous Rejoindre -->
+                <a href="/demande-location" class="nav-btn primary">
+                    <i class="fas fa-handshake"></i>
+                    <span>Nous rejoindre</span>
+                </a>
+            @endauth
+            
+            <!-- Mobile menu button -->
+            <button class="nav-menu-btn" id="navMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </header>
-
+    
+    <!-- Mobile Menu -->
     <nav id="mobileMenu" class="mobile-menu" aria-hidden="true">
         <div class="mobile-menu-overlay"></div>
         <div class="mobile-menu-panel">
             <div class="mobile-menu-header">
-                <a href="{{ url('/') }}" class="inline-flex items-center" title="Accueil">
-                    <img src="{{ asset('images/logo.png') }}" alt="Casa Del Concierge" width="200" height="80" loading="eager" decoding="async" class="h-10 md:h-12 w-auto object-contain">
+                <a href="{{ url('/') }}" class="mobile-menu-logo" title="Accueil">
+                    <img src="{{ asset('images/logo.png') }}" alt="Casa Del Concierge" class="site-logo-img site-logo-img--drawer" loading="eager" decoding="async">
                 </a>
-                <button type="button" class="mobile-menu-close" id="mobileMenuClose" aria-label="Fermer le menu">
+                <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Fermer le menu">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
@@ -2037,7 +2243,6 @@
                 <a href="{{ route('houses.index') }}" class="mobile-menu-link">Propriétés</a>
                 <a href="#about" class="mobile-menu-link">Pourquoi nous</a>
                 <a href="#services" class="mobile-menu-link">Services</a>
-                <a href="#contact" class="mobile-menu-link">Contact</a>
                 <a href="#how-it-works" class="mobile-menu-link">Comment ça marche</a>
             </div>
             <div class="mobile-menu-footer">
@@ -2045,9 +2250,6 @@
                     <a href="{{ route('login') }}" class="mobile-menu-cta">
                         <i class="fas fa-user-circle"></i>
                         <span>Connexion</span>
-                    </a>
-                    <a href="/demande-location" class="mt-4 flex w-full items-center justify-center rounded-full border border-yellow-600 bg-white py-2.5 text-sm font-medium text-neutral-800 transition-colors hover:bg-yellow-600 hover:text-white">
-                        Nous rejoindre
                     </a>
                 @endguest
                 @auth
@@ -5558,7 +5760,7 @@
         <div class="container">
             <div class="footer-brand">
                 <a href="{{ url('/') }}" title="Casa Del Concierge — Accueil">
-                    <img src="{{ asset('images/logo.png') }}" alt="Casa Del Concierge" width="240" height="96" loading="lazy" decoding="async" class="h-16 w-auto object-contain transition-opacity duration-300 hover:opacity-90 md:h-20">
+                    <img src="{{ asset('images/logo.png') }}" alt="Casa Del Concierge" class="footer-logo-img" loading="lazy" decoding="async">
                 </a>
             </div>
             <div class="footer-content">
@@ -5619,7 +5821,6 @@
                     mobileMenu.setAttribute('aria-hidden', 'false');
                     document.body.style.overflow = 'hidden';
                 }
-                navMenuBtn?.setAttribute('aria-expanded', 'true');
             }
             
             function closeMobileMenu() {
@@ -5628,7 +5829,6 @@
                     mobileMenu.setAttribute('aria-hidden', 'true');
                     document.body.style.overflow = '';
                 }
-                navMenuBtn?.setAttribute('aria-expanded', 'false');
             }
             
             navMenuBtn?.addEventListener('click', openMobileMenu);

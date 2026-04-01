@@ -71,16 +71,17 @@
         }
 
         .auth-logo img {
-            height: 2.75rem;
+            height: 2.5rem;
             width: auto;
-            max-height: 52px;
             object-fit: contain;
+            border: none;
+            box-shadow: none;
+            background: transparent;
         }
 
-        @media (max-width: 480px) {
+        @media (min-width: 768px) {
             .auth-logo img {
-                height: 2.5rem;
-                max-height: 48px;
+                height: 3rem;
             }
         }
 
@@ -236,7 +237,7 @@
             <div class="auth-form">
                 <div class="auth-logo">
                     <a href="{{ url('/') }}" title="Casa Del Concierge — Accueil">
-                        <img src="{{ asset('images/logo.png') }}" alt="Casa Del Concierge" width="200" height="56" loading="eager" decoding="async">
+                        <img src="{{ asset('images/logo.png') }}" alt="Casa Del Concierge" loading="eager" decoding="async">
                     </a>
                 </div>
                 <h1 class="auth-title">Bienvenue</h1>

@@ -120,25 +120,28 @@
         }
         
         .sidebar-logo {
-            width: 48px;
-            height: 48px;
-            border-radius: 14px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            overflow: hidden;
+            justify-content: flex-start;
             flex-shrink: 0;
-            background: rgba(255, 255, 255, 0.08);
-            padding: 4px;
-            box-shadow: 0 8px 24px rgba(139, 92, 246, 0.35);
-            position: relative;
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            padding: 0;
             text-decoration: none;
         }
         
         .sidebar-logo img {
-            width: 100%;
-            height: 100%;
+            height: 2.5rem;
+            width: auto;
+            max-width: 11rem;
             object-fit: contain;
+        }
+        
+        @media (min-width: 768px) {
+            .sidebar-logo img {
+                height: 3rem;
+            }
         }
         
         @keyframes pulse-glow {

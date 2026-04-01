@@ -63,10 +63,11 @@
             left: 0;
             right: 0;
             height: 80px;
-            padding: 0 40px;
+            padding: 0 2.5rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 1rem;
             background-color: var(--airbnb-white);
             box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
             z-index: 1000;
@@ -83,27 +84,32 @@
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 8px;
-            transition: transform 0.3s ease;
+            flex-shrink: 0;
+            gap: 0;
+            transition: opacity 0.3s ease;
+            border: none;
+            box-shadow: none;
+            background: transparent;
         }
         
         .logo:hover {
-            transform: scale(1.02);
             opacity: 0.92;
         }
         
         .logo img {
             height: 2.5rem;
             width: auto;
-            max-height: 48px;
             object-fit: contain;
+            object-position: left center;
             display: block;
+            border: none;
+            box-shadow: none;
+            background: transparent;
         }
         
-        @media (max-width: 768px) {
+        @media (min-width: 768px) {
             .logo img {
-                height: 2rem;
-                max-height: 40px;
+                height: 3rem;
             }
         }
         
@@ -727,7 +733,7 @@
             }
             
             header {
-                padding: 0 20px;
+                padding: 0 1.5rem;
             }
             
             .gallery-main {
@@ -770,7 +776,7 @@
     <!-- Header identique à la page d'accueil -->
     <header id="header">
         <a href="{{ route('welcome') }}" class="logo" title="Casa Del Concierge — Accueil">
-            <img src="{{ asset('images/logo.png') }}" alt="Casa Del Concierge" width="180" height="48" loading="eager" decoding="async">
+            <img src="{{ asset('images/logo.png') }}" alt="Casa Del Concierge" loading="eager" decoding="async">
         </a>
         <a href="{{ route('houses.index') }}" class="back-link">
             <i class="fas fa-arrow-left"></i>
