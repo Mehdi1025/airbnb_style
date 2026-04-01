@@ -44,14 +44,6 @@
     <!-- Navigation Enhancements -->
     <link rel="stylesheet" href="{{ asset('css/navigation-enhancements.css') }}">
     
-    <!-- Tailwind (navbar only — preflight off to preserve design system) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            corePlugins: { preflight: false },
-        };
-    </script>
-    
     <!-- Lightbox CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
     
@@ -846,70 +838,95 @@
         }
         
         /* ============================================
-           HEADER — shell + scroll (layout = Tailwind sur #mainHeader)
+           HEADER - Clean Light Design
            ============================================ */
-        #mainHeader.lux-nav.scrolled {
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            padding: 0 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            z-index: 1000;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        #mainHeader.lux-nav .lux-nav-shell {
-            transition: padding 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.04);
         }
         
-        #mainHeader.lux-nav.scrolled .lux-nav-shell {
-            padding-top: 0.875rem;
-            padding-bottom: 0.875rem;
+        /* Logo */
+        .logo {
+            color: var(--neutral-900);
+            font-size: 20px;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: -0.02em;
+            transition: all 0.3s ease;
         }
         
-        /* Logo — h-10 base, léger rétrécissement au scroll */
-        #navLogoImg {
-            transition: height 0.5s cubic-bezier(0.22, 1, 0.36, 1), max-height 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+        .logo:hover {
+            opacity: 0.85;
         }
         
-        #navLogoImg.nav-logo--scrolled {
-            height: 2.25rem !important;
-            max-height: 2.25rem !important;
+        .logo img.site-logo-img {
+            height: 2.5rem;
+            width: auto;
+            max-height: 48px;
+            object-fit: contain;
+            display: block;
         }
         
-        /* Barre sombre : boutons & langue */
-        #mainHeader.lux-nav .nav-btn.lux-nav-btn {
-            color: rgba(255, 255, 255, 0.92);
-            font-weight: 300;
+        @media (max-width: 768px) {
+            .logo img.site-logo-img {
+                height: 2rem;
+                max-height: 40px;
+            }
         }
         
-        #mainHeader.lux-nav .nav-btn.lux-nav-btn:hover {
-            color: #fff;
-            background: rgba(255, 255, 255, 0.08);
+        /* Center Navigation */
+        .nav-center {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px;
+            background: var(--neutral-100);
+            border-radius: 50px;
+            transition: all 0.3s ease;
         }
         
-        #mainHeader.lux-nav .language-selector.lux-lang {
-            padding: 8px 10px;
-            border-radius: 9999px;
-        }
-        
-        #mainHeader.lux-nav .language-selector.lux-lang:hover {
-            background: rgba(255, 255, 255, 0.06);
-        }
-        
-        #mainHeader.lux-nav .language-selector.lux-lang i {
-            color: rgba(255, 255, 255, 0.75);
+        .nav-center-link {
+            padding: 10px 20px;
             font-size: 14px;
-            font-weight: 300;
+            font-weight: 500;
+            color: var(--neutral-600);
+            text-decoration: none;
+            border-radius: 40px;
+            transition: all 0.25s ease;
         }
         
-        #mainHeader.lux-nav .language-selector.lux-lang select {
-            color: #fff;
-            font-weight: 300;
+        .nav-center-link:hover {
+            color: var(--neutral-900);
         }
         
-        #mainHeader.lux-nav .nav-menu-btn.lux-burger {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: #fff;
-        }
-        
-        #mainHeader.lux-nav .nav-menu-btn.lux-burger:hover {
-            background: rgba(255, 255, 255, 0.12);
+        .nav-center-link.active {
+            color: var(--neutral-900);
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         }
         
         /* User menu */
@@ -986,15 +1003,16 @@
             appearance: none;
         }
         
-        /* Menu button (visibility: Tailwind lg:hidden sur l’élément) */
+        /* Menu button */
         .nav-menu-btn {
-            width: 44px;
-            height: 44px;
+            display: none;
+            width: 40px;
+            height: 40px;
             align-items: center;
             justify-content: center;
             background: var(--neutral-100);
             border: none;
-            border-radius: 12px;
+            border-radius: 10px;
             color: var(--neutral-700);
             cursor: pointer;
             transition: all 0.25s ease;
@@ -1115,7 +1133,27 @@
         }
         
         /* Responsive Header */
+        @media (max-width: 1100px) {
+            .nav-center {
+                display: none;
+            }
+            
+            .nav-menu-btn {
+                display: flex;
+            }
+        }
+        
         @media (max-width: 768px) {
+            header {
+                padding: 0 20px;
+                height: 64px;
+            }
+            
+            .logo img.site-logo-img {
+                height: 1.875rem;
+                max-height: 36px;
+            }
+            
             .user-menu {
                 gap: 6px;
             }
@@ -2015,11 +2053,10 @@
             top: 0;
             right: 0;
             bottom: 0;
-            width: min(300px, 92vw);
-            background: #030712;
-            border-left: 1px solid rgba(255, 255, 255, 0.08);
+            width: 300px;
+            background: white;
             transform: translateX(100%);
-            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             flex-direction: column;
             padding: 24px;
@@ -2035,40 +2072,28 @@
         }
         .mobile-menu-link {
             display: block;
-            padding: 14px 0;
-            font-size: 15px;
-            font-weight: 300;
-            letter-spacing: 0.02em;
-            color: rgba(255, 255, 255, 0.92);
+            padding: 12px 0;
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--neutral-900);
             text-decoration: none;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            transition: color 0.2s ease;
-        }
-        .mobile-menu-link:hover {
-            color: #fff;
+            border-bottom: 1px solid var(--neutral-100);
         }
         .mobile-menu-cta {
             display: flex;
             align-items: center;
             gap: 10px;
             margin-top: 20px;
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 400;
+            color: var(--primary);
+            font-weight: 600;
             text-decoration: none;
         }
         .mobile-menu-close {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 9999px;
-            width: 40px;
-            height: 40px;
-            font-size: 18px;
+            background: none;
+            border: none;
+            font-size: 24px;
             cursor: pointer;
-            color: rgba(255, 255, 255, 0.85);
-            transition: background 0.2s ease;
-        }
-        .mobile-menu-close:hover {
-            background: rgba(255, 255, 255, 0.12);
+            color: var(--neutral-600);
         }
     </style>
 </head>
@@ -2076,98 +2101,91 @@
     <!-- Scroll Indicator -->
     <div class="scroll-indicator" id="scrollIndicator"></div>
     
-    <!-- Header — luxe / Awwwards (fond sombre, Tailwind) -->
-    <header id="mainHeader" class="lux-nav fixed top-0 left-0 right-0 z-[1000] w-full border-b border-white/10 bg-gray-950/95 backdrop-blur-md transition-all duration-500 ease-out supports-[backdrop-filter]:bg-gray-950/90">
-        <div class="lux-nav-shell relative mx-auto flex w-full max-w-[1920px] items-center justify-between px-6 py-5 md:px-10">
-            <!-- Mobile : équilibre pour logo centré -->
-            <div class="w-11 shrink-0 lg:hidden" aria-hidden="true"></div>
-
-            <!-- Gauche : liens (desktop) -->
-            <nav class="relative z-10 hidden min-w-0 flex-1 items-center justify-start lg:flex" aria-label="Navigation principale">
-                @php $housesActive = request()->routeIs('houses.index') || request()->routeIs('houses.show'); @endphp
-                <div class="flex items-center space-x-8">
-                    <a href="{{ route('houses.index') }}" class="text-sm font-light tracking-wide text-white transition hover:text-white/75 {{ $housesActive ? 'opacity-100' : '' }}">Propriétés</a>
-                    <a href="#about" class="text-sm font-light tracking-wide text-white/90 transition hover:text-white">Pourquoi nous</a>
-                    <a href="#services" class="text-sm font-light tracking-wide text-white/90 transition hover:text-white">Services</a>
-                    <a href="#contact" class="text-sm font-light tracking-wide text-white/90 transition hover:text-white">Contact</a>
-                </div>
-            </nav>
-
-            <!-- Centre : logo -->
-            <a href="{{ url('/') }}" class="absolute left-1/2 top-1/2 z-[1] flex -translate-x-1/2 -translate-y-1/2 focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500/40 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950 lg:static lg:z-auto lg:translate-x-0 lg:translate-y-0 lg:flex-none" title="Casa Del Concierge — Accueil">
-                <img id="navLogoImg" src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" width="200" height="80" loading="eager" decoding="async" class="h-10 w-auto max-w-[min(52vw,11rem)] object-contain mix-blend-lighten transition-all duration-500 ease-out sm:max-w-[13rem] md:max-w-[14rem]">
-            </a>
-
-            <!-- Droite : actions -->
-            <div class="relative z-[2] flex min-w-0 flex-1 items-center justify-end">
-                <div class="user-menu flex items-center space-x-2 text-sm text-white md:space-x-3">
-                    <div class="language-selector lux-lang flex items-center space-x-2 text-white">
-                        <i class="fas fa-globe text-sm font-light opacity-80"></i>
-                        <select id="languageSelector" onchange="switchLanguage(this.value)" class="cursor-pointer border-0 bg-transparent text-sm font-light text-white outline-none">
-                            <option value="fr" class="bg-gray-900 text-white">FR</option>
-                            <option value="en" class="bg-gray-900 text-white">EN</option>
-                            <option value="de" class="bg-gray-900 text-white">DE</option>
-                        </select>
-                    </div>
-
-                    @auth
-                        @if(auth()->user()->role === 'locataire')
-                            <a href="{{ route('locataire.dashboard') }}" class="nav-btn lux-nav-btn inline-flex items-center space-x-2 rounded-full px-3 py-2">
-                                <i class="fas fa-th-large text-xs opacity-90"></i>
-                                <span class="hidden sm:inline">Dashboard</span>
-                            </a>
-                        @else
-                            <a href="{{ route('reservations.index') }}" class="nav-btn lux-nav-btn inline-flex items-center space-x-2 rounded-full px-3 py-2">
-                                <i class="fas fa-calendar-check text-xs opacity-90"></i>
-                                <span class="hidden sm:inline">Réservations</span>
-                            </a>
-                        @endif
-                        <form action="{{ route('logout') }}" method="POST" class="inline">
-                            @csrf
-                            <button type="submit" class="nav-btn lux-nav-btn inline-flex items-center space-x-2 rounded-full px-3 py-2">
-                                <i class="fas fa-sign-out-alt text-xs opacity-90"></i>
-                                <span class="hidden sm:inline">Déconnexion</span>
-                            </button>
-                        </form>
-                    @else
-                        <div class="nav-dropdown">
-                            <button type="button" class="nav-btn lux-nav-btn nav-dropdown-trigger inline-flex items-center space-x-2 rounded-full px-3 py-2 text-white" id="loginDropdownBtn">
-                                <i class="fas fa-user text-xs opacity-90"></i>
-                                <span class="hidden sm:inline">Se connecter</span>
-                                <i class="fas fa-chevron-down text-[10px] opacity-70"></i>
-                            </button>
-                            <div class="nav-dropdown-menu" id="loginDropdownMenu">
-                                <a href="{{ route('login') }}" class="nav-dropdown-item">
-                                    <div class="nav-dropdown-icon">
-                                        <i class="fas fa-user"></i>
-                                    </div>
-                                    <div class="nav-dropdown-content">
-                                        <span class="nav-dropdown-title">Espace Voyageur</span>
-                                        <span class="nav-dropdown-desc">Réservez votre prochain séjour</span>
-                                    </div>
-                                </a>
-                                <a href="{{ route('locataire.login.form') }}" class="nav-dropdown-item">
-                                    <div class="nav-dropdown-icon loueur">
-                                        <i class="fas fa-home"></i>
-                                    </div>
-                                    <div class="nav-dropdown-content">
-                                        <span class="nav-dropdown-title">Espace Loueur</span>
-                                        <span class="nav-dropdown-desc">Gérez vos propriétés</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-                        <a href="/demande-location" class="inline-flex items-center justify-center rounded-full border border-yellow-600 bg-gray-950 px-4 py-2 text-xs font-light text-white transition-colors hover:bg-yellow-600 sm:px-6 sm:text-sm">
-                            Nous rejoindre
-                        </a>
-                    @endauth
-
-                    <button type="button" class="nav-menu-btn lux-burger inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full lg:hidden" id="navMenuBtn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileMenu">
-                        <i class="fas fa-bars text-sm"></i>
-                    </button>
-                </div>
+    <!-- Header - Cinematic Style -->
+    <header id="mainHeader">
+        <!-- Logo -->
+        <a href="{{ url('/') }}" class="logo" title="Casa Del Concierge — Accueil">
+            <img src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" class="site-logo-img" width="180" height="48" loading="eager" decoding="async">
+        </a>
+        
+        <!-- Center Navigation -->
+        <nav class="nav-center">
+            <a href="{{ route('houses.index') }}" class="nav-center-link active">Propriétés</a>
+            <a href="#about" class="nav-center-link">Pourquoi nous</a>
+            <a href="#services" class="nav-center-link">Services</a>
+            <a href="#contact" class="nav-center-link">Contact</a>
+        </nav>
+        
+        <!-- Right Menu -->
+        <div class="user-menu">
+            <div class="language-selector">
+                <i class="fas fa-globe"></i>
+                <select id="languageSelector" onchange="switchLanguage(this.value)">
+                    <option value="fr" selected>FR</option>
+                    <option value="en">EN</option>
+                    <option value="de">DE</option>
+                </select>
             </div>
+            
+            @auth
+                @if(auth()->user()->role === 'locataire')
+                    <a href="{{ route('locataire.dashboard') }}" class="nav-btn">
+                        <i class="fas fa-th-large"></i>
+                        <span>Dashboard</span>
+                    </a>
+                @else
+                    <a href="{{ route('reservations.index') }}" class="nav-btn">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Réservations</span>
+                    </a>
+                @endif
+                <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                    @csrf
+                    <button type="submit" class="nav-btn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Déconnexion</span>
+                    </button>
+                </form>
+            @else
+                <!-- Dropdown Connexion -->
+                <div class="nav-dropdown">
+                    <button class="nav-btn nav-dropdown-trigger" id="loginDropdownBtn">
+                        <span>Se connecter</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="nav-dropdown-menu" id="loginDropdownMenu">
+                        <a href="{{ route('login') }}" class="nav-dropdown-item">
+                            <div class="nav-dropdown-icon">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="nav-dropdown-content">
+                                <span class="nav-dropdown-title">Espace Voyageur</span>
+                                <span class="nav-dropdown-desc">Réservez votre prochain séjour</span>
+                            </div>
+                        </a>
+                        <a href="{{ route('locataire.login.form') }}" class="nav-dropdown-item">
+                            <div class="nav-dropdown-icon loueur">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <div class="nav-dropdown-content">
+                                <span class="nav-dropdown-title">Espace Loueur</span>
+                                <span class="nav-dropdown-desc">Gérez vos propriétés</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Bouton Nous Rejoindre -->
+                <a href="/demande-location" class="nav-btn primary">
+                    <i class="fas fa-handshake"></i>
+                    <span>Nous rejoindre</span>
+                </a>
+            @endauth
+            
+            <!-- Mobile menu button -->
+            <button class="nav-menu-btn" id="navMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </header>
     
@@ -2176,8 +2194,8 @@
         <div class="mobile-menu-overlay"></div>
         <div class="mobile-menu-panel">
             <div class="mobile-menu-header">
-                <a href="{{ url('/') }}" class="mobile-menu-logo inline-flex items-center justify-center" title="Accueil">
-                    <img src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" class="h-10 w-auto max-w-[min(85vw,12rem)] object-contain mix-blend-lighten" width="200" height="80" loading="eager" decoding="async">
+                <a href="{{ url('/') }}" class="mobile-menu-logo" title="Accueil">
+                    <img src="{{ asset('images/logo.jpeg') }}" alt="Casa Del Concierge" class="site-logo-img" style="height:2rem;max-height:40px;width:auto;object-fit:contain;">
                 </a>
                 <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Fermer le menu">
                     <i class="fas fa-times"></i>
@@ -2187,7 +2205,6 @@
                 <a href="{{ route('houses.index') }}" class="mobile-menu-link">Propriétés</a>
                 <a href="#about" class="mobile-menu-link">Pourquoi nous</a>
                 <a href="#services" class="mobile-menu-link">Services</a>
-                <a href="#contact" class="mobile-menu-link">Contact</a>
                 <a href="#how-it-works" class="mobile-menu-link">Comment ça marche</a>
             </div>
             <div class="mobile-menu-footer">
@@ -2195,9 +2212,6 @@
                     <a href="{{ route('login') }}" class="mobile-menu-cta">
                         <i class="fas fa-user-circle"></i>
                         <span>Connexion</span>
-                    </a>
-                    <a href="/demande-location" class="mt-4 flex w-full items-center justify-center rounded-full border border-yellow-600 bg-transparent py-2.5 text-sm font-light text-white transition-colors hover:bg-yellow-600">
-                        Nous rejoindre
                     </a>
                 @endguest
                 @auth
@@ -5752,7 +5766,6 @@
         // Script pour les interactions utilisateur améliorées
         document.addEventListener('DOMContentLoaded', function() {
             const header = document.getElementById('mainHeader');
-            const navLogoImg = document.getElementById('navLogoImg');
             const scrollIndicator = document.getElementById('scrollIndicator');
             const scrollDown = document.querySelector('.scroll-down');
             
@@ -5769,7 +5782,6 @@
                     mobileMenu.classList.add('active');
                     mobileMenu.setAttribute('aria-hidden', 'false');
                     document.body.style.overflow = 'hidden';
-                    navMenuBtn?.setAttribute('aria-expanded', 'true');
                 }
             }
             
@@ -5778,7 +5790,6 @@
                     mobileMenu.classList.remove('active');
                     mobileMenu.setAttribute('aria-hidden', 'true');
                     document.body.style.overflow = '';
-                    navMenuBtn?.setAttribute('aria-expanded', 'false');
                 }
             }
             
@@ -5909,27 +5920,19 @@
             // HEADER & SCROLL EFFECTS
             // ============================================
             
-            // Effet de scroll sur le header + réduction douce du logo
-            function updateHeaderScrollState() {
-                const scrolled = window.scrollY > 50;
-                if (header) {
-                    header.classList.toggle('scrolled', scrolled);
-                }
-                if (navLogoImg) {
-                    navLogoImg.classList.toggle('nav-logo--scrolled', scrolled);
-                }
-            }
+            // Effet de scroll sur le header
             window.addEventListener('scroll', function() {
-                updateHeaderScrollState();
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
                 
                 // Scroll indicator
-                if (scrollIndicator) {
-                    const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-                    const pct = (window.scrollY / windowHeight) * 100;
-                    scrollIndicator.style.width = pct + '%';
-                }
+                const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (window.scrollY / windowHeight) * 100;
+                scrollIndicator.style.width = scrolled + '%';
             });
-            updateHeaderScrollState();
             
             // Scroll down smooth
             if (scrollDown) {
